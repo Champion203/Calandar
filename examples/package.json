@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.4",
+    "@fullcalendar/daygrid": "^6.1.4",
+    "@fullcalendar/list": "^6.1.4",
+    "@fullcalendar/timegrid": "^6.1.4",
+    "bootstrap-icons": "^1.10.3",
+    "mdbootstrap": "^4.20.0",
+    "sweetalert2": "^11.7.1"
+  }
+}
