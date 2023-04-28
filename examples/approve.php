@@ -58,7 +58,12 @@
 
 <body>
 <script src="js/cookie.js"> </script>
-<div class="container">
+<div class="container-fluid">
+<div class="card">
+      <div class="card-body">
+      <div class=" bg-info text-white" role="alert">
+        <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
+      </div> </div> <br>
       <form action="save_approve.php" method="post" enctype="multipart/form-data">
       <div class="row">
             <div class="col-12 col-sm-4 mb-2">

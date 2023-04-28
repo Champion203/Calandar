@@ -85,7 +85,7 @@ require ('header.html');
   <div class="card">
   <div class="card-body">
   <div class=" bg-info text-white" role="alert">
-    <h3 class="text-center" >>>>>>>>>>>>>></h3> </div>
+    <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
   </div> </div></div> </div></div>  <br>
   <div class="container-fluid">
   <div class="row" >

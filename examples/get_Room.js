@@ -22,6 +22,7 @@
           <option value="2">ม.2E</option>
           <option value="3">ม.3E</option>
 </select>
+
 $(document).ready(function(){
     $('#list1').hide();
     $('#list2').hide();

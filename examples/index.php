@@ -129,7 +129,12 @@ if (!$_SESSION["displayname_th"]){
 </head>
 <body>
   </div>  
-  <div class="container">
+  <div class="container-fluid">
+  <div class="card">
+      <div class="card-body">
+      <div class=" bg-info text-white" role="alert">
+        <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
+      </div> </div> <br>
 	<div class="row">
   <div id='script-warning'>
 		This page should be running from a webserver, to allow fetching from the <code>json/</code> directory.

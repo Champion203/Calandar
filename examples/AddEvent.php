@@ -18,14 +18,8 @@ require ('Header.html');
 $min = date('Y-d-m H:i:s');
 
 require('ConnectDatabase.php'); 
-$stmt = "SELECT DISTINCT Agenda FROM Room";
+$stmt = "SELECT * FROM Agenda";
 $query = sqlsrv_query($conn, $stmt);
-
-$stmt2 = "SELECT DISTINCT Building FROM Room";
-$query2 = sqlsrv_query($conn, $stmt2);
-
-$stmt3 = "SELECT DISTINCT Room FROM Room";
-$query3 = sqlsrv_query($conn, $stmt3);
 ?>
 <style>
 
@@ -63,10 +57,19 @@ body {
   <title>Calendar Event</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-      <div class="container">
+      <div class="container-fluid">
+      <div class="row" >
+      <div class="col-md-12" style="width:100%;">
+      <div class="card">
+      <div class="card-body">
+      <div class=" bg-info text-white" role="alert">
+        <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
+      </div> </div> <br>
       <form action="save_insert.php" method="post" enctype="multipart/form-data">
       <div class="row">
             <div class="col-12 col-sm-6 mb-2">
@@ -94,33 +97,32 @@ body {
           <div class="col-12 col-sm-12">
             <div class="row">
               <div class="col-12 col-sm-6 mb-2">
-                <label for="sel1">เลือกห้อง </label>
-                <font color='red'> * </font>
-                <select class="form-control" name="sel1" id="sel1" required>
-                  <option>ห้องประชุม 1</option>
-                  <option>ห้องประชุม 2</option>
-                  <option>ห้องประชุม 3</option>
-                </select>
-
-                <select  name="Agenda" id="Agenda" class="form-control" required>
-                   <?php while($result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { ?>
-                      <option value="<?php echo $result['Agenda'];?>"><?php echo $result['Agenda'];?></option>
+              <label for="sel1">หน่วยงาน</label>
+              <select class="form-control" name="Ref_Agenda_id" id="Agenda">
+                    <option value="" selected disabled>-กรุณาเลือกหน่วยงาน-</option>
+                    <?php while ($result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)){ ?>
+                    <option value="<?=$result['ID']?>"><?=$result['Agenda']?></option>
                     <?php } ?>
-                 </select>
-
-                 <select  name="products" id="products" class="form-control" required>
-                    <option value="">เลือกตึก</option>
-                 </select>
-                 
-                 <select  name="Room_id" id="Room" class="form-control" required>
-                    <option value="">เลือกห้อง</option>
-                 </select>
+              </select>
               </div>
+              <div class="col-12 col-sm-6 mb-2">
+              <label for="sel1">ตึก</label>
+              <select class="form-control" name="Ref_Building_id" id="Building">
+              </select>
+            </div>
+
+
             <div class="col-12 col-sm-6 mb-2">
-              <label for='start'>วันเวลาที่เริ่มต้น <font color='red'> * </font></label>
+            <label for="sel2">ห้องประชุม</label>
+            <select class="form-control" name="Ref_Room_id" id="Room">
+            </select>
+            </div>
+            <div class="col-12 col-sm-6 mb-3" >
+            <label for='start'>วันเวลาที่เริ่มต้น <font color='red'> * </font></label>
               <input type='datetime-local' name='booking_start_date' min='$min' id='start' class='form-control' required>
             </div>
-          </div>
+            </div> 
+
           <div class="row">
             <div class="col-12 col-sm-6 mb-2">
               <label for='end'>วันเวลาที่สิ้นสุด</label>
@@ -133,6 +135,7 @@ body {
                 <input type="text" name="detail" id='detail' class="form-control" required>
               </div>
             </div> 
+
             <div class="row">
             <div class="col-12 col-sm-6">
               <button type="summit" class="btn btn-success btn-block">เพิ่มกำหนดการ</button>
@@ -142,8 +145,38 @@ body {
             </div>
       </form>
     </div>
-    <script src="assets/jquery.min.js"></script>
-    <script src="assets/script.js"></script>
 </body>
 </html>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $('#Agenda').change(function() {
+    var ID_Agenda = $(this).val();
+ 
+      $.ajax({
+      type: "POST",
+      url: "ajax_db.php",
+      data: {ID:ID_Agenda,function:'Agenda'},
+      success: function(data){
+        console.log(data)
+          $('#Building').html(data); 
+      }
+    });
+  });
+ 
+  $('#Building').change(function() {
+    var ID_Building = $(this).val();
+ 
+      $.ajax({
+      type: "POST",
+      url: "ajax_db.php",
+      data: {ID:ID_Building,function:'Building'},
+      success: function(data){
+        console.log(data)
+          $('#Room').html(data); 
+      }
+    });
+  });
+
+
+</script>
