@@ -14,7 +14,7 @@ require ('Header.html');
     <script type="text/javascript" src="node_modules/mdbootstrap/js/mdb.min.js"></script>
 
         <!--Navbar -->
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-Dark">
       <a class="navbar-brand" href="#">Calendar Event</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
         aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
