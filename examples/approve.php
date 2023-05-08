@@ -61,7 +61,7 @@
 <div class="container-fluid">
 <div class="card">
       <div class="card-body">
-      <div class=" bg-info text-white" role="alert">
+      <div class=" bg-Dark text-white" role="alert">
         <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
       </div> </div> <br>
       <form action="save_approve.php" method="post" enctype="multipart/form-data">
@@ -123,7 +123,7 @@
               <button type="summit" class="btn btn-success btn-block">บันทึก</button>
             </div>
             <div class="col-12 col-sm-6">
-              <button type="button" onclick="javascript:window.history.back()" class="btn btn-secondary btn-block">ย้อนกลับ</button>
+              <button type="button" onclick="javascript:window.history.back()" class="btn btn-Danger btn-block">ย้อนกลับ</button>
             </div>
       </form>
     </div>
