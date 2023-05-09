@@ -79,13 +79,17 @@
               <input type='text' name='department' id='department' value='<?php echo $result['department']; ?>' class='form-control' disabled>
             </div></div>
             <div class="row">
-            <div class="col-12 col-sm-6 mb-2">
+            <div class="col-12 col-sm-4 mb-2">
               <label for='end'>หน่วยงาน</label>
               <input type='text' name='organization' id='organization' value='<?php echo $result['organization']; ?>' class='form-control' disabled>
             </div>
-            <div class="col-12 col-sm-6 mb-2">
+            <div class="col-12 col-sm-4 mb-2">
               <label for='end'>อีเมล์</label>
               <input type='text' name='email' id='email' value='<?php echo $result['email']; ?>' class='form-control' disabled>
+            </div>
+            <div class="col-12 col-sm-4 mb-2">
+              <label for='end'>ตึก</label>
+              <input type='text' name='email' id='buiding' value='<?php echo $result['Name_Building']; ?>' class='form-control' disabled>
             </div></div>
             <div class="row">
            <div class="col-12 col-sm-4">
@@ -104,7 +108,7 @@
               <div class="col-12 col-sm-4 mb-2">
               <label for='end'>รายละเอียด</label>
               <input type='text' name='Detail' id='Detail' value='<?php echo $result['Detail']; ?>' class='form-control' disabled>
-            </div>
+            </div> 
             <div class="col-12 col-sm-4 mb-2">
                 <label for="sel1">สถานะ </label>
                 <font color='red'> * </font>
@@ -117,7 +121,7 @@
               <div class="col-12 col-sm-4 mb-2">
               <label for='end'>Comment</label>
               <input type='text' name='Comment' id='Comment' class='form-control' >
-            </div></div> 
+            </div></div> <br>
             <div class="row">
             <div class="col-12 col-sm-6">
               <button type="summit" class="btn btn-success btn-block">บันทึก</button>

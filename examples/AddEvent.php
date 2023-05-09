@@ -98,6 +98,7 @@ body {
             <div class="row">
               <div class="col-12 col-sm-6 mb-2">
               <label for="sel1">หน่วยงาน</label>
+              <font color='red'> * </font>
               <select class="form-control" name="Ref_Agenda_id" id="Agenda">
                     <option value="" selected disabled>-กรุณาเลือกหน่วยงาน-</option>
                     <?php while ($result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)){ ?>
@@ -107,13 +108,14 @@ body {
               </div>
               <div class="col-12 col-sm-6 mb-2">
               <label for="sel1">ตึก</label>
+              <font color='red'> * </font>
               <select class="form-control" name="Ref_Building_id" id="Building">
               </select>
             </div>
 
-
             <div class="col-12 col-sm-6 mb-2">
             <label for="sel2">ห้องประชุม</label>
+            <font color='red'> * </font>
             <select class="form-control" name="Ref_Room_id" id="Room">
             </select>
             </div>

@@ -6,6 +6,13 @@ if (!$_SESSION["displayname_th"]){
 } else {
   require ('menu.php');
 }
+function mixTextColor($length) {
+	$colors = array('#0DA068','#194E9C','#ED9C13','#ED5713','#057249','#5F91DC','#F88E5D');
+	$result = substr(str_shuffle($text), 0, $length); 
+	for($i = 0; $i < $length; $i++) {
+		echo $colors[array_rand($colors)];
+	}
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,11 +48,10 @@ if (!$_SESSION["displayname_th"]){
       buttonIcons: false, // show the prev/next text
       weekNumbers: true,
       navLinks: true, // can click day/week names to navigate views
-      editable: true,
+      editable: false,
       eventLimit: true, // allow "more" link when too many events
       
  eventSources: [
-
     // your event source
     {
       url: 'resource.php',
@@ -56,7 +62,7 @@ if (!$_SESSION["displayname_th"]){
       failure: function() {
         alert('there was an error while fetching events!');
       },
-      color: 'yellow', 
+      color: '<?php mixTextColor(1); ?>', 
       textColor: 'black' 
     }
   ]

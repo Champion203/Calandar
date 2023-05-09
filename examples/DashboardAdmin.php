@@ -103,7 +103,8 @@ require ('header.html');
   <table id="tables" class="table table-striped table-bordered" style="width:100%">
       <thead>
           <tr>
-              <th>รหัสการจอง</th>
+              <th >รหัสการจอง</th>
+              <th>อาคาร</th>
               <th>ห้องประชุม</th>
               <th>ชื่อ-นามสกุล</th>
               <th>เริ่ม</th>
@@ -119,12 +120,13 @@ require ('header.html');
                   $datestart=date_create("$start");
                   $dateend=date_create("$end");?>
                   <tr>
-                      <td><?php echo $result["ID_Reserve"]; ?></td>
-                      <td><?php echo $result["Name_Room"]; ?></td>
-                      <td><?php echo $result["FullName"]; ?></td>
-                      <td><?php echo date_format($datestart,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
-                      <td><?php echo date_format($dateend,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
-                      <td>  <?php if ($result['Status_Reserve'] == 'approve') { ?>
+                      <td align="center"><?php echo $result["ID_Reserve"]; ?></td>
+                      <td align="center"><?php echo $result["Name_Building"]; ?></td>
+                      <td align="center"><?php echo $result["Name_Room"]; ?></td>
+                      <td align="center"><?php echo $result["FullName"]; ?></td>
+                      <td align="center"><?php echo date_format($datestart,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
+                      <td align="center"><?php echo date_format($dateend,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
+                      <td align="center">  <?php if ($result['Status_Reserve'] == 'approve') { ?>
                               <span class="badge bg-success">อนุมัติ</span>                     
                             <?php }elseif ($result['Status_Reserve'] == 'wait') { ?>
                               <span class="badge bg-info">รอดำเนินการ</span>
@@ -138,6 +140,7 @@ require ('header.html');
           <tfoot>
           <tr>
           <th>รหัสการจอง</th>
+              <th>อาคาร</th>
               <th>ห้องประชุม</th>
               <th>ชื่อ-นามสกุล</th>
               <th>เริ่ม</th>

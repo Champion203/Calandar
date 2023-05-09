@@ -4,8 +4,8 @@
     require ('Header.html'); 
     require ('navbar.php');
     require('ConnectDatabase.php'); 
-	$sql = "INSERT INTO Reserve_Room (ID_Reserve, FullName, department, organization, email, Name_Room, Start_Reserve, End_Reserve, Detail, Status_Reserve)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	$sql = "INSERT INTO Reserve_Room (ID_Reserve, FullName, department, organization, email, Name_Room, Name_Building, Start_Reserve, End_Reserve, Detail, Status_Reserve)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $Status = "wait";
     function random_strings($length_of_string) 
@@ -17,9 +17,47 @@
     $resultChar = substr($str, 0, $length_of_string); 
     return $resultChar;
     }
+    
+    if ($_POST["Ref_Building_id"] == "1"){
+        $Building_id = "อาคารวิทยบริการ";
+    }
+    elseif ($_POST["Ref_Building_id"] == "2"){
+        $Building_id = "อาคารปิยชาติ ชั้น7";
+    }
+    elseif ($_POST["Ref_Building_id"] == "3"){
+        $Building_id = "อาคารเรียนรวมและปฎิบัติการรวม ชั้น2";
+    }
+    elseif ($_POST["Ref_Building_id"] == "4"){
+        $Building_id = "อาคารเรียนรวมและปฎิบัติการรวม";
+    }
+    elseif ($_POST["Ref_Building_id"] == "5"){
+        $Building_id = "สำนักงานอธิการบดี (รังสิต) ชั้น2";
+    }
+    elseif ($_POST["Ref_Building_id"] == "6"){
+        $Building_id = "อาคารบโดมบริหาร (รังสิต) ชั้น3";
+    }
+    elseif ($_POST["Ref_Building_id"] == "7"){
+        $Building_id = "อาคารปิยชาติ ชั้น2";
+    }
+    elseif ($_POST["Ref_Building_id"] == "8"){
+        $Building_id = "อาคารราขสุดา ชั้น3";
+    }
+    elseif ($_POST["Ref_Building_id"] == "9"){
+        $Building_id = "อาคารเรียนรวมและปฎิบัติการรวม ชั้น2";
+    }
+    elseif ($_POST["Ref_Building_id"] == "10"){
+        $Building_id = "อาคารเรียนรวมและปฎิบัติการรวม ชั้น4";
+    }
+    elseif ($_POST["Ref_Building_id"] == "11"){
+        $Building_id = "อาคารอเนกประสงค์ 3 (ท่าพระจันทร์)";
+    }
+    elseif ($_POST["Ref_Building_id"] == "12"){
+        $Building_id = "คณะนิติศาสตร์";
+    }
 
-	$params = array(random_strings(6), $_SESSION['displayname_th'], $_SESSION['department'], $_SESSION['organization'], $_SESSION['email'], $_POST["Ref_Room_id"], $_POST["booking_start_date"], 
-    $_POST["booking_end_date"], $_POST["detail"], $Status);
+
+	$params = array(random_strings(6), $_SESSION['displayname_th'], $_SESSION['department'], $_SESSION['organization'], $_SESSION['email'], $_POST["Ref_Room_id"], $Building_id, 
+    $_POST["booking_start_date"], $_POST["booking_end_date"], $_POST["detail"], $Status);
 
 	$stmt = sqlsrv_query( $conn, $sql, $params);
 	if( $stmt === false ) {
