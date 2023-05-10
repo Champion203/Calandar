@@ -134,6 +134,7 @@ function mixTextColor($length) {
 </style>
 </head>
 <body>
+<script src="js/cookie.js"> </script>
   </div>  
   <div class="container-fluid">
   <div class="card">

@@ -95,11 +95,11 @@ require ('header.html');
                               $dateend=date_create("$end");
                               ?>
                   <tr>
-                      <td><?php echo $result["FullName"]; ?></td>
-                      <td><?php echo $result["Name_Room"]; ?></td>
-                      <td><?php echo date_format($datestart,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
-                      <td><?php echo date_format($dateend,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
-                      <td><?php if ($result['Status_Reserve'] == 'approve') { ?>
+                      <td align="center"><?php echo $result["FullName"]; ?></td>
+                      <td align="center"><?php echo $result["Name_Room"]; ?></td>
+                      <td align="center"><?php echo date_format($datestart,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
+                      <td align="center"><?php echo date_format($dateend,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
+                      <td align="center"><?php if ($result['Status_Reserve'] == 'approve') { ?>
                               <span class="badge bg-success">อนุมัติ</span>                     
                             <?php }elseif ($result['Status_Reserve'] == 'wait') { ?>
                               <span class="badge bg-info">รอดำเนินการ</span>

@@ -56,7 +56,7 @@ if (isset($_GET['approve'])){
 }
 
 require('ConnectDatabase.php'); 
-$stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN'";
+$stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' ORDER BY Name_Room DESC" ;
 $query = sqlsrv_query($conn, $stmt);
 require ('header.html');
 
@@ -103,6 +103,7 @@ require ('header.html');
   <table id="tables" class="table table-striped table-bordered" style="width:100%">
       <thead>
           <tr>
+              <th >ลำดับ</th>
               <th >รหัสการจอง</th>
               <th>อาคาร</th>
               <th>ห้องประชุม</th>
@@ -120,6 +121,7 @@ require ('header.html');
                   $datestart=date_create("$start");
                   $dateend=date_create("$end");?>
                   <tr>
+                      <td align="center"><?php echo $result["ID"]; ?></td>
                       <td align="center"><?php echo $result["ID_Reserve"]; ?></td>
                       <td align="center"><?php echo $result["Name_Building"]; ?></td>
                       <td align="center"><?php echo $result["Name_Room"]; ?></td>
@@ -139,6 +141,7 @@ require ('header.html');
               <?php } ?> 
           <tfoot>
           <tr>
+          <th >ลำดับ</th>
           <th>รหัสการจอง</th>
               <th>อาคาร</th>
               <th>ห้องประชุม</th>
