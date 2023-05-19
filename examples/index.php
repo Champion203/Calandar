@@ -66,7 +66,6 @@ function mixTextColor($length) {
       textColor: 'black' 
     }
   ]
-
 });
 
     calendar.render();
@@ -93,6 +92,7 @@ function mixTextColor($length) {
 <style>
 
   body {
+    background-image: url('pic_ocean.jpg');
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
@@ -136,7 +136,7 @@ function mixTextColor($length) {
 <body>
 <script src="js/cookie.js"> </script>
   </div>  
-  <div class="container-fluid">
+  <div class="container">
   <div class="card">
       <div class="card-body">
       <div class=" bg-Dark text-white" role="alert">
@@ -146,9 +146,12 @@ function mixTextColor($length) {
   <div id='script-warning'>
 		This page should be running from a webserver, to allow fetching from the <code>json/</code> directory.
 	</div>
+  <div class="container">
+  <div class="card">
+      <div class="card-body">
 		<div class="col-12 col-sm-12">
 			<div id='calendar'></div>
-		</div>
+		</div> </div> </div>
 	</div>
 </div>
 </body>

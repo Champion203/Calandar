@@ -1,5 +1,5 @@
 body {
-    background-color: #cab3b5;
+  background-image: url('pic_ocean.jpg');
     font-family: "Asap", sans-serif;
   }
   
@@ -11,7 +11,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100%;
+    width: 40%;
     transform: translate(-50%, -50%);
     transition: transform 300ms, box-shadow 300ms;
     box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);

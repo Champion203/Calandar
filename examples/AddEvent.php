@@ -24,6 +24,7 @@ $query = sqlsrv_query($conn, $stmt);
 <style>
 
 body {
+  background-image: url('pic_ocean.jpg');
   margin: 0;
   padding: 0;
   font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
@@ -62,7 +63,7 @@ body {
 </head>
 
 <body>
-      <div class="container-fluid">
+      <div class="container">
       <div class="row" >
       <div class="col-md-12" style="width:100%;">
       <div class="card">
@@ -71,6 +72,8 @@ body {
         <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
       </div> </div> <br>
       <form action="save_insert.php" method="post" enctype="multipart/form-data">
+      <div class="card">
+      <div class="card-body">
       <div class="row">
             <div class="col-12 col-sm-6 mb-2">
               <label for='end'>ชื่อ-นามสกุล ผู้จอง</label>
