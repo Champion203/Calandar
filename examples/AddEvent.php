@@ -24,7 +24,7 @@ $query = sqlsrv_query($conn, $stmt);
 <style>
 
 body {
-  background-image: url('pic_ocean.jpg');
+  background-image: url('img/J4x.gif');
   margin: 0;
   padding: 0;
   font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
@@ -66,11 +66,12 @@ body {
       <div class="container">
       <div class="row" >
       <div class="col-md-12" style="width:100%;">
+      <img src="img/TRAINING.jpg"  style="width:100%;"> <hr>
       <div class="card">
       <div class="card-body">
-      <div class=" bg-Dark text-white" role="alert">
+      <!-- <div class=" bg-Dark text-white" role="alert">
         <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
-      </div> </div> <br>
+      </div> </div> <br> -->
       <form action="save_insert.php" method="post" enctype="multipart/form-data">
       <div class="card">
       <div class="card-body">
@@ -102,7 +103,7 @@ body {
               <div class="col-12 col-sm-6 mb-2">
               <label for="sel1">หน่วยงาน</label>
               <font color='red'> * </font>
-              <select class="form-control" name="Ref_Agenda_id" id="Agenda">
+              <select class="form-control" name="Ref_Agenda_id" id="Agenda" required>
                     <option value="" selected disabled>-กรุณาเลือกหน่วยงาน-</option>
                     <?php while ($result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)){ ?>
                     <option value="<?=$result['ID']?>"><?=$result['Agenda']?></option>
@@ -112,14 +113,14 @@ body {
               <div class="col-12 col-sm-6 mb-2">
               <label for="sel1">ตึก</label>
               <font color='red'> * </font>
-              <select class="form-control" name="Ref_Building_id" id="Building">
+              <select class="form-control" name="Ref_Building_id" id="Building" required>
               </select>
             </div>
 
             <div class="col-12 col-sm-6 mb-2">
             <label for="sel2">ห้องประชุม</label>
             <font color='red'> * </font>
-            <select class="form-control" name="Ref_Room_id" id="Room">
+            <select class="form-control" name="Ref_Room_id" id="Room" required> 
             </select>
             </div>
             <div class="col-12 col-sm-6 mb-3" >

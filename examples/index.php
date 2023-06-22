@@ -69,30 +69,13 @@ function mixTextColor($length) {
 });
 
     calendar.render();
-
-    // build the locale selector's options
-    calendar.getAvailableLocaleCodes().forEach(function(localeCode) {
-      var optionEl = document.createElement('option');
-      optionEl.value = localeCode;
-      optionEl.selected = localeCode == initialLocaleCode;
-      optionEl.innerText = localeCode;
-      localeSelectorEl.appendChild(optionEl);
-    });
-
-    // when the selected option changes, dynamically change the calendar option
-    localeSelectorEl.addEventListener('change', function() {
-      if (this.value) {
-        calendar.setOption('locale', this.value);
-      }
-    });
-
   });
 
 </script>
 <style>
 
   body {
-    background-image: url('pic_ocean.jpg');
+    background-image: url('img/J4x.gif');
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
@@ -130,23 +113,19 @@ function mixTextColor($length) {
 		top: 10px;
 		right: 10px;
 	}
-
 </style>
 </head>
 <body>
 <script src="js/cookie.js"> </script>
   </div>  
-  <div class="container">
-  <div class="card">
-      <div class="card-body">
-      <div class=" bg-Dark text-white" role="alert">
-        <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
-      </div> </div> <br>
+  <div class="container-fluid">
 	<div class="row">
+  <div class="col-md-12" style="width:100%;">
+      <img src="img/TRAINING.jpg"  style="width:100%;"> <hr>
   <div id='script-warning'>
 		This page should be running from a webserver, to allow fetching from the <code>json/</code> directory.
 	</div>
-  <div class="container">
+  <div class="container-fluid">
   <div class="card">
       <div class="card-body">
 		<div class="col-12 col-sm-12">

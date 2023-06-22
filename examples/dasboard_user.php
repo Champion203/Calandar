@@ -1,24 +1,24 @@
 <?php 
 session_start();
   require ('menu.php');
-  if (isset($_GET['del'])) {
-    $del = $_GET['del'];
-    echo "
-    <script>
-    Swal.fire({
-      icon: 'warning',
-      title: 'ยกเลิกการจอง',
-      text: 'คุณต้องการยกเลิกการจอง',
-      showCancelButton: true,
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ยกเลิกการจอง',
-    }).then((result) => {
-      if (result.value) {
-        location.href='deleted.php?del=$del' ;
-      }
-    })
-    </script>";
-  }
+  // if (isset($_GET['del'])) {
+  //   $del = $_GET['del'];
+  //   echo "
+  //   <script>
+  //   Swal.fire({
+  //     icon: 'warning',
+  //     title: 'ยกเลิกการจอง',
+  //     text: 'คุณต้องการยกเลิกการจอง',
+  //     showCancelButton: true,
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'ยกเลิกการจอง',
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       location.href='deleted.php?del=$del' ;
+  //     }
+  //   })
+  //   </script>";
+  // }
 
   if (!$_SESSION["displayname_th"]){  //check session
   echo "
@@ -58,14 +58,16 @@ require ('header.html');
 <body>
   <script src="js/cookie.js"> </script>
   <!--<img src="img/TRAINING.jpg"  style="width:100%;">-->
+  <div class="container-fluid ">
   <div class="row" >
   <div class="col-md-12" style="width:100%;">
-  <div class="card">
+      <img src="img/TRAINING.jpg"  style="width:100%;"> <hr>
+  <!-- <div class="card">
   <div class="card-body">
   <div class=" bg-dark text-white" role="alert">
-    <h3 class="text-center" >ประวัติการจอง</h3> </div>
+    <h3 class="text-center" >ประวัติการจอง</h3> </div> -->
   </div> </div></div> </div></div>  <br>
-
+  <div class="container-fluid ">
   <div class="row" >
   <div class="col-md-12" style="width:100%;">
   <div class="card">
@@ -84,7 +86,6 @@ require ('header.html');
               <th>เริ่ม</th>
               <th>สิ้นสุด</th>
               <th>สถานะ</th>
-              <th>ยกเลิก</th>
           </tr>
           </th>
           <tbody>
@@ -102,11 +103,10 @@ require ('header.html');
                       <td align="center"><?php if ($result['Status_Reserve'] == 'approve') { ?>
                               <span class="badge bg-success">อนุมัติ</span>                     
                             <?php }elseif ($result['Status_Reserve'] == 'wait') { ?>
-                              <span class="badge bg-info">รอดำเนินการ</span>
+                              <span class="badge bg-info">รออนุมัติ</span>
                             <?php } else { ?>
                               <span class="badge bg-danger">ไม่อนุมัติ</span>
                             <?php }?></td>
-                      <td align="center"><a href="dasboard_user.php?del=<?php echo $result["ID_Reserve"];?>" title="ยกเลิกการจอง"><i class="material-icons" style="font-size:31">delete</i></a></td>
                   </tr>
               <?php } ?> 
           <tfoot>
@@ -116,7 +116,6 @@ require ('header.html');
               <th>เริ่ม</th>
               <th>สิ้นสุด</th>
               <th>สถานะ</th>
-              <th>ยกเลิก</th>
           </tr>
           </tfoot>
           </tbody>

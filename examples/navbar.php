@@ -43,7 +43,7 @@ require ('Header.html');
               aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-user"></i> <?php echo $_SESSION['displayname_th']; ?> </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-              <a class="dropdown-item" href="ads.php"><?php echo $_SESSION['displayname_th']; ?></a>
+              <a class="dropdown-item" href="AddAdmin.php">เพิ่ม Admin</a>
               <a class="dropdown-item" href="dasboard_user.php">ข้อมูลการใช้งาน</a>
               <a class="dropdown-item" href="navbar.php?logout='1'">ออกจากระบบ</a>
             </div>

@@ -9,7 +9,6 @@ $sql = "SELECT * FROM Admin WHERE Username LIKE '$username'";
 $params = array();
 $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
 $stmt = sqlsrv_query( $conn, $sql , $params, $options );
-
 $row_count = sqlsrv_num_rows( $stmt );
 
 if ($row_count === 0){  //check session
@@ -20,11 +19,27 @@ echo "
       icon: 'error',
       title: 'ท่านไม่มีสิทธิ์เข้าถึงหน้านี้',
       showConfirmButton: false,
-      timer: 800, });
+      timer: 1500, });
       setTimeout(function(){
           window.location.href = 'index.php';
        },1500);
   </script>";
+} elseif ($row_count === 1){
+  require ('header.html');
+  require('ConnectDatabase.php'); 
+  $StatusN = null;
+  $stmt = "SELECT * FROM Reserve_Room";
+  if (isset($_GET['approve'])){
+    $StatusN = 'approve';
+    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' ORDER BY ID" ;
+  } elseif (isset($_GET['wait'])){
+    $StatusN = 'wait';
+    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' ORDER BY ID" ;
+  } elseif (isset($_GET['disapproval'])){
+    $StatusN = 'disapproval';
+    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' ORDER BY ID" ;
+  }
+  $query = sqlsrv_query($conn, $stmt);
 }
 
 if (isset($_GET['del'])) {
@@ -33,33 +48,43 @@ if (isset($_GET['del'])) {
   <script>
   Swal.fire({
     icon: 'warning',
-    title: 'Delete',
-    text: 'คุณต้องการ Delete',
+    title: 'ยกเลิกการจอง',
+    text: 'คุณต้องการยกเลิกการจอง',
     showCancelButton: true,
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Delete',
+    confirmButtonText: 'ยกเลิกการจอง',
   }).then((result) => {
     if (result.value) {
-      location.href='delete.php?del=' + $del;
+      location.href='DashboardAdmin.php?del1=$del' ;
     }
   })
   </script>";
-
 }
-$StatusN = 'wait';
-if (isset($_GET['approve'])){
-  $StatusN = 'approve';
-} elseif (isset($_GET['wait'])){
-  $StatusN = 'wait';
-} elseif (isset($_GET['disapproval'])){
-  $StatusN = 'disapproval';
+if (isset($_GET['del1'])){
+  $sql = "DELETE FROM Reserve_Room
+  WHERE ID_Reserve = ? ";
+  $params = array($_GET['del1']);
+    $stmt = sqlsrv_query( $conn, $sql, $params);
+    if( $stmt === false ) {
+        die( print_r( sqlsrv_errors(), true));
+  }
+    else
+    {
+        echo "
+        <script>
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'ลบเรียบร้อย',
+            showConfirmButton: false,
+            timer: 1500, });
+            setTimeout(function(){
+                window.location.href = 'DashboardAdmin.php';
+            },1500);
+        </script>";
+    }
+  sqlsrv_close($conn);
 }
-
-require('ConnectDatabase.php'); 
-$stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' ORDER BY Name_Room DESC" ;
-$query = sqlsrv_query($conn, $stmt);
-require ('header.html');
-
 ?>
 
 <!DOCTYPE html>
@@ -79,14 +104,9 @@ require ('header.html');
 <body>
   <script src="js/cookie.js"> </script>
   <div class="container-fluid ">
-  <!--<img src="img/TRAINING.jpg"  style="width:100%;"> <hr>-->
+  <img src="img/TRAINING.jpg"  style="width:100%;"> <hr>
   <div class="row" >
-  <div class="col-md-12" style="width:100%;">
-  <div class="card">
-  <div class="card-body">
-  <div class=" bg-Dark text-white" role="alert">
-    <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
-  </div> </div></div> </div></div>  <br>
+  </div> </div></div> </div></div>  
   <div class="container-fluid">
   <div class="row" >
   <div class="col-md-12" style="width:100%;">
@@ -97,7 +117,7 @@ require ('header.html');
   <div class="row">
     <div align="right" class="col-12 col-sm-12 mb-2">
       <a href="DashboardAdmin.php?approve" class="btn btn-success" role="button"> อนุมัติ</a>
-      <a href="DashboardAdmin.php?wait" class="btn btn-info" role="button"> รอดำเนินการ</a>
+      <a href="DashboardAdmin.php?wait" class="btn btn-info" role="button"> รออนุมัติ</a>
       <a href="DashboardAdmin.php?disapproval" class="btn btn-danger" role="button"> ไม่อนุมัติ</a></div></div>
   <ul class="nav navbar-nav navbar-right">
   <table id="tables" class="table table-striped table-bordered" style="width:100%">
@@ -131,12 +151,15 @@ require ('header.html');
                       <td align="center">  <?php if ($result['Status_Reserve'] == 'approve') { ?>
                               <span class="badge bg-success">อนุมัติ</span>                     
                             <?php }elseif ($result['Status_Reserve'] == 'wait') { ?>
-                              <span class="badge bg-info">รอดำเนินการ</span>
+                              <span class="badge bg-info">รออนุมัติ</span>
                             <?php } else { ?>
                               <span class="badge bg-danger">ไม่อนุมัติ</span>
                             <?php }
                      ?></td>
-                      <td align="center"><a href="approve.php?ID_Reserve=<?php echo $result["ID_Reserve"];?>" title="จัดการ"><i style='font-size:24px' class='fas'>&#xf044;</i></a></td>
+                      <td align="center"><a href="approve.php?ID_Reserve=<?php echo $result["ID_Reserve"];?>" title="จัดการ"><i style='font-size:24px' class='material-icons'>&#xe065;</i></a>
+                      <a href="PDF.php?id=<?php echo $result["ID"];?>" title="exportPDF"><i class="material-icons" style="font-size:24px">&#xe555;</i></a>
+                      <a href="DashboardAdmin.php?del=<?php echo $result["ID_Reserve"];?>" title="ยกเลิกการจอง"><i class="material-icons" style="font-size:24px">&#xe92b;</i></a></td>
+
                   </tr>
               <?php } ?> 
           <tfoot>
@@ -189,3 +212,14 @@ require ('header.html');
   } ); 
   } );
 </script>
+
+<style>
+body {
+  background-image: url('img/J4x.gif');
+  width:100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+  font-size: 14px;
+}
+</style>

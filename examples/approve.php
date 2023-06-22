@@ -22,8 +22,14 @@
       timer: 800, });
       setTimeout(function(){
           window.location.href = 'index.php';
-       },1500);
+       },800);
   </script>";
+  } elseif ($row_count === 1){
+    require('ConnectDatabase.php'); 
+    $stmt = "SELECT * FROM Reserve_Room WHERE ID_Reserve LIKE '%".$ID_Reserve."%'";
+    $query = sqlsrv_query($conn, $stmt);
+    require ('header.html');
+    $result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
   }
 
    $ID_Reserve = null;
@@ -31,16 +37,6 @@
    {
 	   $ID_Reserve = $_GET["ID_Reserve"];
    }
-
-    require('ConnectDatabase.php'); 
-    $stmt = "SELECT * FROM Reserve_Room WHERE ID_Reserve LIKE '%".$ID_Reserve."%'";
-    $query = sqlsrv_query($conn, $stmt);
-    require ('header.html');
-    $result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
-
-    if (isset($_GET['save'])) {
-      
-    }
 ?>
 
 <!DOCTYPE html>
