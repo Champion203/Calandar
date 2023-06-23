@@ -16,7 +16,9 @@
   </script>";
   require ('Header.html'); 
   require('ConnectDatabase.php'); 
-  $username = $_SESSION['email'] ;
+  if (isset($_SESSION['email'])){
+    $username = $_SESSION['email'] ;
+  }
     
   $sql = "SELECT * FROM Admin WHERE Username LIKE '$username' AND Class LIKE 'SuperAdmin'";
   $params = array();

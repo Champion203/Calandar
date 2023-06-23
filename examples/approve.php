@@ -2,7 +2,9 @@
   session_start();
   require ('menu.php');
   require('ConnectDatabase.php'); 
-  $username = $_SESSION['email'] ;
+  if (isset($_SESSION['email'])){
+    $username = $_SESSION['email'] ;
+  }
   
   $sql = "SELECT * FROM Admin WHERE Username LIKE '$username'";
   $params = array();

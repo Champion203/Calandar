@@ -35,24 +35,26 @@ session_start();
   </script>";
       }
 
-$email = $_SESSION["email"];
-require('ConnectDatabase.php'); 
-$stmt = "SELECT * FROM Reserve_Room WHERE email LIKE '%".$email."%'";
-$query = sqlsrv_query($conn, $stmt);
-require ('header.html');
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>HOME</title> 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/dasboard.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  if (isset($_SESSION['email'])){
+    $username = $_SESSION['email'] ;
+  }
+  require('ConnectDatabase.php'); 
+  $stmt = "SELECT * FROM Reserve_Room WHERE email LIKE '%".$email."%'";
+  $query = sqlsrv_query($conn, $stmt);
+  require ('header.html');
+  ?>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <title>HOME</title> 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/dasboard.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
