@@ -6,7 +6,11 @@
 	$sql = "INSERT INTO Admin (Username, Class)
             VALUES (?, ?)";
 
-    $params = array ($_POST["Email"], $_POST["Class"]);
+    if(isset($_POST["Email"]) AND ($_POST["Class"])){
+        $Email = $_POST["Email"] ;
+        $Class = $_POST["Class"] ;
+    }
+    $params = array ($Email, $Class);
 
     $stmt = sqlsrv_query( $conn, $sql, $params);
     if( $stmt === false ) {

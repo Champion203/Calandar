@@ -3,11 +3,18 @@
     session_start();
     require('ConnectDatabase.php'); 
     require ('navbar.php');
+
+    if(isset($_POST["ID"])){
+        $Status = $_POST["Status"] ;
+        $Comment = $_POST["Comment"] ;
+        $ID = $_POST["ID"] ;
+    }
+
 	$sql = "UPDATE Reserve_Room SET 
 				Status_Reserve = ? ,
                 Comment = ? 
 				WHERE ID_Reserve = ? ";
-	$params = array($_POST["Status"], $_POST["Comment"], $_POST["ID"]);
+	$params = array($Status, $Comment, $ID);
 
 	$stmt = sqlsrv_query( $conn, $sql, $params);
 	if( $stmt === false ) {
