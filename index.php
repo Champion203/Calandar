@@ -17,7 +17,7 @@ function mixTextColor($length) {
 <!DOCTYPE html>
 <html>
 <head>
-<title>Calendar Event</title> 
+<title>ระบบจองห้องประชุมออนไลน์</title> 
 <meta charset='utf-8' />
 <link href='packages/core/main.css' rel='stylesheet' />
 <link href='packages/daygrid/main.css' rel='stylesheet' />
