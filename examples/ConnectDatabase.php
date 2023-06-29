@@ -1,8 +1,8 @@
 <?php
-    	$serverName = "172.25.112.1"; //172.30.208.1
-        $userName = "sa";
-        $userPassword = "P@ssw0rd";
-        $dbName = "Reserve_Room";
+    	$serverName = "localhost"; //172.30.208.1
+        $userName = "champ894";
+        $userPassword = "1139700012961";
+        $dbName = "ReserveRoom";
     
         $connectionInfo = array("Database"=>$dbName, "UID"=>$userName, "PWD"=>$userPassword, "MultipleActiveResultSets"=>true,"CharacterSet" =>'UTF-8');
     
