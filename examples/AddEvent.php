@@ -97,11 +97,15 @@ body {
               <font color='red'> * </font>
               <input type='text' name='email' id='email' value='<?php echo $_SESSION['email']; ?>' class='form-control' disabled>
             </div></div>
-        <div class="row">
-          <div class="col-12 col-sm-12">
+
             <div class="row">
-              <div class="col-12 col-sm-6 mb-2">
-              <label for="sel1">หน่วยงาน</label>
+            <div class="col-12 col-sm-6 mb-2">
+              <label for='end'>เบอร์ติดต่อ</label>
+              <font color='red'> * </font>
+              <input type='text' name='Phone' id='Phone' class='form-control' >
+            </div>
+            <div class="col-12 col-sm-6 mb-2">
+            <label for="sel1">หน่วยงาน</label>
               <font color='red'> * </font>
               <select class="form-control" name="Ref_Agenda_id" id="Agenda" required>
                     <option value="" selected disabled>-กรุณาเลือกหน่วยงาน-</option>
@@ -109,36 +113,37 @@ body {
                     <option value="<?=$result['ID']?>"><?=$result['Agenda']?></option>
                     <?php } ?>
               </select>
-              </div>
+            </div></div>
+
+        <div class="row">
+          <div class="col-12 col-sm-12">
+            <div class="row">
               <div class="col-12 col-sm-6 mb-2">
               <label for="sel1">ตึก</label>
               <font color='red'> * </font>
               <select class="form-control" name="Ref_Building_id" id="Building" required>
               </select>
             </div>
-
             <div class="col-12 col-sm-6 mb-2">
             <label for="sel2">ห้องประชุม</label>
             <font color='red'> * </font>
             <select class="form-control" name="Ref_Room_id" id="Room" required> 
             </select>
-            </div>
-            <div class="col-12 col-sm-6 mb-3" >
-            <label for='start'>วันเวลาที่เริ่มต้น <font color='red'> * </font></label>
-              <input type='datetime-local' name='booking_start_date' min='$min' id='start' class='form-control' required>
-            </div>
-            </div> 
-
+            </div></div>
           <div class="row">
             <div class="col-12 col-sm-6 mb-2">
-              <label for='end'>วันเวลาที่สิ้นสุด</label>
+              <label for='end'>วันที่เข้ารับบริการ</label>
               <font color='red'> * </font>
-              <input type='datetime-local' name='booking_end_date' id='end' min='$min' class='form-control' required>
+              <input type='date' name='booking_date' id='date' min='$min' class='form-control' required>
             </div>
               <div class="col-12 col-sm-6 mb-3" >
-                <label for='end'>รายละเอียด</label>
+                <label for='end'>ช่วงเวลาที่เข้ารับบริการ</label>
                 <font color='red'> * </font>
-                <input type="text" name="detail" id='detail' class="form-control" required>
+                <select class="form-control" name="time" id="time" required>
+                  <option value="morning">เช้า (08.30-12.00 น.)</option>
+                  <option value="afternoon">บ่าย (13.00-16.30 น.)</option>
+                  <option value="all">ทั้งวัน (08.30-16.30 น.)</option>
+                </select>
               </div>
             </div> 
 

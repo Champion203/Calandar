@@ -4,8 +4,8 @@
     require ('Header.html'); 
     require ('navbar.php');
     require('ConnectDatabase.php'); 
-	$sql = "INSERT INTO Reserve_Room (ID_Reserve, FullName, department, organization, email, Name_Room, Name_Building, Start_Reserve, End_Reserve, Detail, Status_Reserve)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	$sql = "INSERT INTO Reserve_Room (ID_Reserve, FullName, department, organization, email, Name_Room, Name_Building, Start_Reserve, End_Reserve, time, Status_Reserve, Phone)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $Status = "wait";
     function random_strings($length_of_string) 
@@ -55,11 +55,33 @@
         $Building_id = "คณะนิติศาสตร์";
     }
 
+    if(isset($_POST["booking_date"])){
+        $date = $_POST["booking_date"];
+        if ($_POST["time"] == "morning"){
+            $start = "08:00";
+            $end = "12:00";
+            $datestart = "$date $start";
+            $dateend = "$date $end";
+        }
+        elseif ($_POST["time"] == "afternoon"){
+            $start = "13:00";
+            $end = "16:30";
+            $datestart = "$date $start";
+            $dateend = "$date $end";
+        }
+        elseif ($_POST["time"] == "all"){
+            $start = "08:00";
+            $end = "16:30";
+            $datestart = "$date $start";
+            $dateend = "$date $end";
+        }
+    }
 
-	$params = array(random_strings(6), $_SESSION['displayname_th'], $_SESSION['department'], $_SESSION['organization'], $_SESSION['email'], $_POST["Ref_Room_id"], $Building_id, 
-    $_POST["booking_start_date"], $_POST["booking_end_date"], $_POST["detail"], $Status);
-
-	$stmt = sqlsrv_query( $conn, $sql, $params);
+    if(isset( $_POST["booking_date"])){
+        $params = array(random_strings(6), $_SESSION['displayname_th'], $_SESSION['department'], $_SESSION['organization'], $_SESSION['email'], 
+        $_POST["Ref_Room_id"], $Building_id, $datestart, $dateend, $_POST["time"], $Status, $_POST["Phone"]);
+        $stmt = sqlsrv_query( $conn, $sql, $params);
+    }
 	if( $stmt === false ) {
 		 die( print_r( sqlsrv_errors(), true));
 	}

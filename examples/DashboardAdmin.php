@@ -129,17 +129,16 @@ if (isset($_GET['del1'])){
               <th>อาคาร</th>
               <th>ห้องประชุม</th>
               <th>ชื่อ-นามสกุล</th>
-              <th>เริ่ม</th>
-              <th>สิ้นสุด</th>
+              <th>วันที่เข้ารับบริการ</th>
+              <!-- <th>สิ้นสุด</th> -->
               <th>สถานะ</th>
               <th>จัดการ</th>
           </tr>
           </th>
           <tbody>
           <?php while($result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
-            			$start = str_replace("T"," ",$result['Start_Reserve']);
                   $end = str_replace("T"," ",$result['End_Reserve']);
-                  $datestart=date_create("$start");
+                  $datestart=date_create($result['Start_Reserve']);
                   $dateend=date_create("$end");?>
                   <tr>
                       <td align="center"><?php echo $result["ID"]; ?></td>
@@ -148,7 +147,7 @@ if (isset($_GET['del1'])){
                       <td align="center"><?php echo $result["Name_Room"]; ?></td>
                       <td align="center"><?php echo $result["FullName"]; ?></td>
                       <td align="center"><?php echo date_format($datestart,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
-                      <td align="center"><?php echo date_format($dateend,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
+                      <!-- <td align="center"><?php echo date_format($dateend,"วันที่ d/m/Y เวลา H:i:s น."); ?></td> -->
                       <td align="center">  <?php if ($result['Status_Reserve'] == 'approve') { ?>
                               <span class="badge bg-success">อนุมัติ</span>                     
                             <?php }elseif ($result['Status_Reserve'] == 'wait') { ?>
@@ -170,8 +169,8 @@ if (isset($_GET['del1'])){
               <th>อาคาร</th>
               <th>ห้องประชุม</th>
               <th>ชื่อ-นามสกุล</th>
-              <th>เริ่ม</th>
-              <th>สิ้นสุด</th>
+              <th>วันที่เข้ารับบริการ</th>
+              <!-- <th>สิ้นสุด</th> -->
               <th>สถานะ</th>
               <th>จัดการ</th>
           </tr>
