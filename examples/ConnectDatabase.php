@@ -1,7 +1,7 @@
 <?php
     	$serverName = "localhost"; //172.30.208.1
-        $userName = "champ894@tu.ac.th";
-        $userPassword = "1139700012961";
+        $userName = "champ894";
+        $userPassword = "P@ssw0rd1";
         $dbName = "ReserveRoom";
     
         $connectionInfo = array("Database"=>$dbName, "UID"=>$userName, "PWD"=>$userPassword, "MultipleActiveResultSets"=>true,"CharacterSet" =>'UTF-8');
