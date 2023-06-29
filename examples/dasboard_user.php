@@ -36,7 +36,7 @@ session_start();
       }
 
   if (isset($_SESSION['email'])){
-    $username = $_SESSION['email'] ;
+    $email = $_SESSION['email'] ;
   }
   require('ConnectDatabase.php'); 
   $stmt = "SELECT * FROM Reserve_Room WHERE email LIKE '%".$email."%'";

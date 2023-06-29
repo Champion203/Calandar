@@ -15,7 +15,7 @@ require ('Header.html');
 
         <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-Dark">
-      <a class="navbar-brand" href="#">Calendar Event</a>
+      <a class="navbar-brand" href="index.php">ระบบการจองห้องประชุมออนไลน์</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
         aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -55,7 +55,7 @@ body {
 <html lang="en">
 
 <head>
-  <title>Calendar Event</title>
+  <title>เพิ่มกำหนดการ</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -88,7 +88,7 @@ body {
             </div></div>
             <div class="row">
             <div class="col-12 col-sm-6 mb-2">
-              <label for='end'>หน่วยงาน</label>
+              <label for='end'>หน่วยงานที่</label>
               <font color='red'> * </font>
               <input type='text' name='organization' id='organization' value='<?php echo $_SESSION['organization']; ?>' class='form-control' disabled>
             </div>
@@ -105,7 +105,7 @@ body {
               <input type='text' name='Phone' id='Phone' class='form-control' >
             </div>
             <div class="col-12 col-sm-6 mb-2">
-            <label for="sel1">หน่วยงาน</label>
+            <label for="sel1">หน่วยงานที่รับผิดชอบ</label>
               <font color='red'> * </font>
               <select class="form-control" name="Ref_Agenda_id" id="Agenda" required>
                     <option value="" selected disabled>-กรุณาเลือกหน่วยงาน-</option>

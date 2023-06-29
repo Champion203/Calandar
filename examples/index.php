@@ -116,7 +116,13 @@ function mixTextColor($length) {
 </style>
 </head>
 <body>
-<script src="js/cookie.js"> </script>
+<!-- OneTrust Cookies Consent Notice start for tu.ac.th -->
+<script type="text/javascript" src="https://cdn-apac.onetrust.com/consent/7dbccbf7-21b3-4ce1-93a9-9c2783ada201/OtAutoBlock.js" ></script>
+<script src="https://cdn-apac.onetrust.com/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="7dbccbf7-21b3-4ce1-93a9-9c2783ada201" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for tu.ac.th -->
   </div>  
   <div class="container-fluid">
 	<div class="row">
