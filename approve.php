@@ -101,8 +101,8 @@
               </div></div>
               <div class="row">
               <div class="col-12 col-sm-4 mb-2">
-              <label for='end'>รายละเอียด</label>
-              <input type='text' name='Detail' id='Detail' value='<?php echo $result['Detail']; ?>' class='form-control' disabled>
+              <label for='end'>เบอร์โทรศัพท์</label>
+              <input type='text' name='Detail' id='Detail' value='<?php echo $result['Phone']; ?>' class='form-control' disabled>
             </div> 
             <div class="col-12 col-sm-4 mb-2">
                 <label for="sel1">สถานะ </label>

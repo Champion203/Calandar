@@ -72,7 +72,7 @@ body {
       <!-- <div class=" bg-Dark text-white" role="alert">
         <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
       </div> </div> <br> -->
-      <form action="save_insert.php" method="post" enctype="multipart/form-data">
+      <form action="checkQ.php" method="post" enctype="multipart/form-data">
       <div class="card">
       <div class="card-body">
       <div class="row">
@@ -88,7 +88,7 @@ body {
             </div></div>
             <div class="row">
             <div class="col-12 col-sm-6 mb-2">
-              <label for='end'>หน่วยงานที่</label>
+              <label for='end'>หน่วยงาน</label>
               <font color='red'> * </font>
               <input type='text' name='organization' id='organization' value='<?php echo $_SESSION['organization']; ?>' class='form-control' disabled>
             </div>
@@ -102,7 +102,7 @@ body {
             <div class="col-12 col-sm-6 mb-2">
               <label for='end'>เบอร์ติดต่อ</label>
               <font color='red'> * </font>
-              <input type='text' name='Phone' id='Phone' class='form-control' >
+              <input type='text' name='Phone' id='Phone' class='form-control' required>
             </div>
             <div class="col-12 col-sm-6 mb-2">
             <label for="sel1">หน่วยงานที่รับผิดชอบ</label>
