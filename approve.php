@@ -52,7 +52,6 @@
 </head>
 
 <body>
-<script src="js/cookie.js"> </script>
 <div class="container-fluid">
 <div class="card">
       <div class="card-body">
