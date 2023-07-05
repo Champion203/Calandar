@@ -24,12 +24,15 @@
 		
 		$start = str_replace("T"," ",$result['Start_Reserve']);
 		$end = str_replace("T"," ",$result['End_Reserve']);
+		$color = substr(md5(rand()), 0, 6);
 
 		$events[] = [
 		'id' => $result['ID_Reserve'],
 		'title' => $result['Name_Room'],
 		'start' => $start,
 		'end' => $end,
+		'color' => $color,
+		'textColor' => 'white',
 				];
 		$i++;
 		echo $_POST['Ref_Room_id'];
@@ -91,3 +94,4 @@
 	// }
 	
 ?>
+

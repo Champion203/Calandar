@@ -44,7 +44,7 @@ session_start();
   require ('header.html');
   ?>
   <!DOCTYPE html>
-  <html lang="en">
+  <html lang="th">
   <head>
   <title>dasboard User</title> 
   <meta charset="utf-8">
@@ -58,8 +58,13 @@ session_start();
 </head>
 
 <body>
-  <script src="js/cookie.js"> </script>
-  <!--<img src="img/TRAINING.jpg"  style="width:100%;">-->
+<!-- OneTrust Cookies Consent Notice start for tu.ac.th -->
+<script type="text/javascript" src="https://cdn-apac.onetrust.com/consent/7dbccbf7-21b3-4ce1-93a9-9c2783ada201/OtAutoBlock.js" ></script>
+<script src="https://cdn-apac.onetrust.com/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="7dbccbf7-21b3-4ce1-93a9-9c2783ada201" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for tu.ac.th -->
   <div class="container-fluid ">
   <div class="row" >
   <div class="col-md-12" style="width:100%;">

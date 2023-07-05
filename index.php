@@ -6,13 +6,6 @@ if (!$_SESSION["displayname_th"]){
 } else {
   require ('menu.php');
 }
-function mixTextColor($length) {
-	$colors = array('#0DA068','#194E9C','#ED9C13','#ED5713','#057249','#5F91DC','#F88E5D');
-	$result = substr(str_shuffle($text), 0, $length); 
-	for($i = 0; $i < $length; $i++) {
-		echo $colors[array_rand($colors)];
-	}
-}
 require('resource.php'); 
 ?>
 <!DOCTYPE html>
@@ -51,8 +44,8 @@ require('resource.php');
       navLinks: true, // can click day/week names to navigate views
       editable: false,
       eventLimit: true, // allow "more" link when too many events
-    
-      events:  <?php echo json_encode($events); ?>
+
+      events:  <?php echo json_encode($events); ?>,
 });
 
     calendar.render();
