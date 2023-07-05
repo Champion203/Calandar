@@ -39,7 +39,7 @@ session_start();
     $email = $_SESSION['email'] ;
   }
   require('ConnectDatabase.php'); 
-  $stmt = "SELECT * FROM Reserve_Room WHERE email LIKE '%".$email."%'";
+  $stmt = "SELECT * FROM Reserve_Room WHERE email LIKE '%".$email."%' ORDER BY ID";
   $query = sqlsrv_query($conn, $stmt);
   require ('header.html');
   ?>

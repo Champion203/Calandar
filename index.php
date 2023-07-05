@@ -13,6 +13,7 @@ function mixTextColor($length) {
 		echo $colors[array_rand($colors)];
 	}
 }
+require('resource.php'); 
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +36,7 @@ function mixTextColor($length) {
     var initialLocaleCode = 'th';
     var localeSelectorEl = document.getElementById('locale-selector');
     var calendarEl = document.getElementById('calendar');
-
+ 
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
       header: {
@@ -51,21 +52,7 @@ function mixTextColor($length) {
       editable: false,
       eventLimit: true, // allow "more" link when too many events
     
- eventSources: [
-    // your event source
-    {
-      url: 'resource.php',
-      method: 'POST',
-      extraParams: {
-        custom_param1: 'events'
-      },
-      failure: function() {
-        alert('there was an error while fetching events!');
-      },
-      color: '<?php mixTextColor(1); ?>', 
-      textColor: 'black' 
-    }
-  ]
+      events:  <?php echo json_encode($events); ?>
 });
 
     calendar.render();
@@ -131,6 +118,41 @@ function OptanonWrapper() { }
   <div id='script-warning'>
 		This page should be running from a webserver, to allow fetching from the <code>json/</code> directory.
 	</div>
+  <div class="row">
+  <div class="col-md-12" style="width:100%;">
+  <div class="card">
+      <d class="card-body">
+      <div class="row">
+      <div class="col-12 col-sm-3">
+            <label for="sel1">หน่วยงานที่รับผิดชอบ</label>
+              <select class="form-control" name="Ref_Agenda_id" id="Agenda" required>
+                    <option value="" selected disabled>-กรุณาเลือกหน่วยงาน-</option>
+                    <?php while ($result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)){ ?>
+                    <option value="<?=$result['ID']?>"><?=$result['Agenda']?></option>
+                    <?php } ?>
+              </select>
+            </div>
+            <div class="col-12 col-sm-3 ">
+              <label for="sel1">ตึก</label>
+              <select class="form-control" name="Ref_Building_id" id="Building" required>
+              </select>
+          </div> 
+            <div class="col-12 col-sm-3">
+            <form action="index.php" method="POST" enctype="multipart/form-data">
+            <label for="sel2">ห้องประชุม</label>
+            <select class="form-control" name="Ref_Room_id" id="Room" required> 
+            </select>
+            </div> 
+          <div class="col-12 col-sm-1">
+          <label for="sel1"> ค้นหา</label>
+              <button type="summit" class="form-control btn-success text-white">ค้นหา</button>
+            </div>
+            <div class="col-12 col-sm-1">
+          <label for="sel1"> ยกเลิก</label>
+              <a href="index.php" class="form-control bg-danger text-white">ยกเลิก</a>
+            </div>
+          </div> </form> <hr>
+
   <div class="container-fluid">
   <div class="card">
       <div class="card-body">
@@ -141,3 +163,34 @@ function OptanonWrapper() { }
 </div>
 </body>
 </html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $('#Agenda').change(function() {
+    var ID_Agenda = $(this).val();
+ 
+      $.ajax({
+      type: "POST",
+      url: "ajax_db.php",
+      data: {ID:ID_Agenda,function:'Agenda'},
+      success: function(data){
+        console.log(data)
+          $('#Building').html(data); 
+      }
+    });
+  });
+ 
+  $('#Building').change(function() {
+    var ID_Building = $(this).val();
+ 
+      $.ajax({
+      type: "POST",
+      url: "ajax_db.php",
+      data: {ID:ID_Building,function:'Building'},
+      success: function(data){
+        console.log(data)
+          $('#Room').html(data); 
+      }
+    });
+  });
+</script>
