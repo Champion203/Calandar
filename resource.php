@@ -4,40 +4,43 @@
 	$stmt = "SELECT * FROM Agenda";
 	$query = sqlsrv_query($conn, $stmt);
 
-	$sql2 = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE 'approve'";
+	$sql3 = "SELECT * FROM Reserve_Room WHERE Status_Reserve <> 'disapproval' ";
 	if (isset($_POST['Ref_Room_id'])){
 	$nameroom = $_POST['Ref_Room_id'];
-	$sql2 = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE 'approve' AND Name_Room LIKE '%$nameroom%'";
+	$sql3 = "SELECT * FROM Reserve_Room WHERE Name_Room LIKE '%$nameroom%' AND Status_Reserve <> 'disapproval'";
 	}
 	$params = array();
 	$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
-	$stmt = sqlsrv_query( $conn, $sql2 , $params, $options );
+	$stmt = sqlsrv_query( $conn, $sql3 , $params, $options );
 	$row_count = sqlsrv_num_rows( $stmt );
 
-	$result2 = sqlsrv_query($conn, $sql2);
+	$result3 = sqlsrv_query($conn, $sql3);
 
 	if ($row_count > 0) {
-	
-	$events = [];		
+	$events2 = [];		
 	$i = 1;
-	while($result = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC)) {
+	while($result = sqlsrv_fetch_array($result3, SQLSRV_FETCH_ASSOC)) {
 		
+		if ($result['Status_Reserve'] == "wait"){
+			$color2 = '#FFFF33';
+		} elseif ($result['Status_Reserve'] == "approve"){
+			$color2 = '#33CC33';
+		}
 		$start = str_replace("T"," ",$result['Start_Reserve']);
 		$end = str_replace("T"," ",$result['End_Reserve']);
-		$color = substr(md5(rand()), 0, 6);
+		// $color = substr(md5(rand()), 0, 6);
 
-		$events[] = [
+		$events2[] = [
 		'id' => $result['ID_Reserve'],
 		'title' => $result['Name_Room'],
 		'start' => $start,
 		'end' => $end,
-		'color' => $color,
-		'textColor' => 'white',
+		'color' => $color2,
+		'textColor' => 'black',
 				];
 		$i++;
-		echo $_POST['Ref_Room_id'];
-	}
-	}
+			}
+		}
 	// $sql1 = "SELECT * FROM Reserve_Room";
 	// $params = array();
 	// $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );

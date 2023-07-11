@@ -45,7 +45,11 @@ require('resource.php');
       editable: false,
       eventLimit: true, // allow "more" link when too many events
 
-      events:  <?php echo json_encode($events); ?>,
+      events:  
+      <?php 
+      echo json_encode($events2,JSON_UNESCAPED_UNICODE); 
+      // echo json_encode($events2)
+      ?>,
 });
 
     calendar.render();
