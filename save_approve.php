@@ -11,10 +11,9 @@
     }
 
 	$sql = "UPDATE Reserve_Room SET 
-				Status_Reserve = ? ,
-                Comment = ? 
+				Status_Reserve = ? 
 				WHERE ID_Reserve = ? ";
-	$params = array($Status, $Comment, $ID);
+	$params = array($Status, $ID);
 
 	$stmt = sqlsrv_query( $conn, $sql, $params);
 	if( $stmt === false ) {

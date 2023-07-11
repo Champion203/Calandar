@@ -10,25 +10,25 @@
         $date = $_POST["booking_date"];
     }
 
-    $sql1 = "SELECT * FROM Reserve_Room WHERE time LIKE 'all' AND Name_Room LIKE '%$Room%' AND Start_Reserve LIKE '%$date%'";
+    $sql1 = "SELECT * FROM Reserve_Room WHERE time LIKE 'all' AND Name_Room LIKE '%$Room%' AND Start_Reserve LIKE '%$date%' AND Status_Reserve != 'disapproval'";
     $params1 = array();
     $options1 =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
     $stmt1 = sqlsrv_query( $conn, $sql1 , $params1, $options1 );
     $row_count1 = sqlsrv_num_rows( $stmt1 );
 
-    $sql2 = "SELECT * FROM Reserve_Room WHERE time LIKE '$time' AND Name_Room LIKE '%$Room%' AND Start_Reserve LIKE '%$date%'";
+    $sql2 = "SELECT * FROM Reserve_Room WHERE time LIKE '$time' AND Name_Room LIKE '%$Room%' AND Start_Reserve LIKE '%$date%'  AND Status_Reserve != 'disapproval'";
     $params2 = array();
     $options2 =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
     $stmt2 = sqlsrv_query( $conn, $sql2 , $params2, $options2 );
     $row_count2 = sqlsrv_num_rows( $stmt2 );
 
-    $sql3 = "SELECT * FROM Reserve_Room WHERE time LIKE 'morning' AND Name_Room LIKE '%$Room%' AND Start_Reserve LIKE '%$date%'";
+    $sql3 = "SELECT * FROM Reserve_Room WHERE time LIKE 'morning' AND Name_Room LIKE '%$Room%' AND Start_Reserve LIKE '%$date%'  AND Status_Reserve != 'disapproval'";
     $params3 = array();
     $options3 =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
     $stmt3 = sqlsrv_query( $conn, $sql3 , $params3, $options3 );
     $row_count3 = sqlsrv_num_rows( $stmt3 );
 
-    $sql4 = "SELECT * FROM Reserve_Room WHERE time LIKE 'afternoon' AND Name_Room LIKE '%$Room%' AND Start_Reserve LIKE '%$date%'";
+    $sql4 = "SELECT * FROM Reserve_Room WHERE time LIKE 'afternoon' AND Name_Room LIKE '%$Room%' AND Start_Reserve LIKE '%$date%'  AND Status_Reserve != 'disapproval'";
     $params4 = array();
     $options4 =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
     $stmt4 = sqlsrv_query( $conn, $sql4 , $params4, $options4 );

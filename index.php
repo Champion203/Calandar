@@ -140,12 +140,10 @@ function OptanonWrapper() { }
             <select class="form-control" name="Ref_Room_id" id="Room" required> 
             </select>
             </div> 
-          <div class="col-12 col-sm-1">
-          <label for="sel1"> ค้นหา</label>
+          <div align="center" class="col-12 col-sm-1" style="margin:25px;">
               <button type="summit" class="form-control btn-success text-white">ค้นหา</button>
             </div>
-            <div class="col-12 col-sm-1">
-          <label for="sel1"> ยกเลิก</label>
+            <div align="center" class="col-12 col-sm-1" style="margin:25px;">
               <a href="index.php" class="form-control bg-danger text-white">ยกเลิก</a>
             </div>
           </div> </form> <hr>

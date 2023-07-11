@@ -41,7 +41,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Calendar Event</title> 
+<title>จัดการการจองห้อง</title> 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/dasboard.css">
@@ -52,59 +52,62 @@
 </head>
 
 <body>
-<div class="container-fluid">
-<div class="card">
+      <div class="container">
+      <div class="row" >
+      <div class="col-md-12" style="width:100%;">
+      <img src="img/TRAINING.jpg"  style="width:100%;"> <hr>
+      <div class="card">
       <div class="card-body">
-      <div class=" bg-Dark text-white" role="alert">
+      <!-- <div class=" bg-Dark text-white" role="alert">
         <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
-      </div> </div> <br>
+      </div> </div> <br> -->
       <form action="save_approve.php" method="post" enctype="multipart/form-data">
+      <div class="card">
+      <div class="card-body">
       <div class="row">
-            <div class="col-12 col-sm-4 mb-2">
-              <label for='end'>รหัสการจอง</label>
-              <input type='text' name='ID' id='ID' value='<?php echo $result['ID_Reserve']; ?>' class='form-control'>
-            </div>
-            <div class="col-12 col-sm-4 mb-2">
+            <div class="col-12 col-sm-6 mb-2">
+            <input type='text' name='ID' id='ID' value='<?php echo $result['ID_Reserve']; ?>' class='form-control' hidden>
               <label for='end'>ชื่อ-นามสกุล ผู้จอง</label>
-              <input type='text' name='Name' id='Name' value='<?php echo $result['FullName']; ?>' class='form-control' disabled>
+              <input type='text' name='Name' id='Name' value='<?php echo $_SESSION['displayname_th']; ?>' class='form-control' disabled>
             </div>
-            <div class="col-12 col-sm-4 mb-2">
-              <label for='end'>แผนก</label>
-              <input type='text' name='department' id='department' value='<?php echo $result['department']; ?>' class='form-control' disabled>
+            <div class="col-12 col-sm-6 mb-2">
+            <label for='end'>เบอร์โทรศัพท์</label>
+              <input type='text' name='Detail' id='Detail' value='<?php echo $result['Phone']; ?>' class='form-control' disabled>
             </div></div>
             <div class="row">
-            <div class="col-12 col-sm-4 mb-2">
+            <div class="col-12 col-sm-6 mb-2">
               <label for='end'>หน่วยงาน</label>
-              <input type='text' name='organization' id='organization' value='<?php echo $result['organization']; ?>' class='form-control' disabled>
+              <input type='text' name='organization' id='organization' value='<?php echo $_SESSION['organization']; ?>' class='form-control' disabled>
             </div>
-            <div class="col-12 col-sm-4 mb-2">
+            <div class="col-12 col-sm-6 mb-2">
               <label for='end'>อีเมล์</label>
-              <input type='text' name='email' id='email' value='<?php echo $result['email']; ?>' class='form-control' disabled>
-            </div>
-            <div class="col-12 col-sm-4 mb-2">
-              <label for='end'>ตึก</label>
-              <input type='text' name='email' id='buiding' value='<?php echo $result['Name_Building']; ?>' class='form-control' disabled>
+              <input type='text' name='email' id='email' value='<?php echo $_SESSION['email']; ?>' class='form-control' disabled>
             </div></div>
+
             <div class="row">
-           <div class="col-12 col-sm-4">
-           <label for='end'>ห้องประชุม</label>
-             <input type='text' name='Name_Room' id='Name_Room' value='<?php echo $result['Name_Room']; ?>' class='form-control' disabled>
-              </div>
-              <div class="col-12 col-sm-4 mb-2">
-              <label for='end'>วันเวลาที่เริ่มต้น</label>
+            <div class="col-12 col-sm-6 mb-2">
+            <label for='end'>วันเวลาที่เริ่มต้น</label>
               <input type='datetime-local' name='Start' id='Start' value='<?php echo $result['Start_Reserve']; ?>' class='form-control' disabled>
             </div>
-           <div class="col-12 col-sm-4">
-           <label for='end'>วันเวลาที่สิ้นสุด</label>
+            <div class="col-12 col-sm-6 mb-2">
+            <label for='end'>วันเวลาที่สิ้นสุด</label>
              <input type='datetime-local' name='End' id='End' value='<?php echo $result['End_Reserve']; ?>' class='form-control' disabled>
-              </div></div>
-              <div class="row">
-              <div class="col-12 col-sm-4 mb-2">
-              <label for='end'>เบอร์โทรศัพท์</label>
-              <input type='text' name='Detail' id='Detail' value='<?php echo $result['Phone']; ?>' class='form-control' disabled>
-            </div> 
-            <div class="col-12 col-sm-4 mb-2">
-                <label for="sel1">สถานะ </label>
+            </div></div>
+
+        <div class="row">
+          <div class="col-12 col-sm-12">
+            <div class="row">
+              <div class="col-12 col-sm-6 mb-2">
+              <label for='end'>ตึก</label>
+              <input type='text' name='email' id='buiding' value='<?php echo $result['Name_Building']; ?>' class='form-control' disabled>
+            </div>
+            <div class="col-12 col-sm-6 mb-2">
+            <label for='end'>ห้องประชุม</label>
+             <input type='text' name='Name_Room' id='Name_Room' value='<?php echo $result['Name_Room']; ?>' class='form-control' disabled>
+            </div></div>
+          <div class="row">
+              <div class="col-12 col-sm-6 mb-3" >
+              <label for="sel1">สถานะ </label>
                 <font color='red'> * </font>
                 <select class="form-control" name="Status" id="Status" required>
                   <option value="approve">อนุมัติ</option>
@@ -112,10 +115,8 @@
                   <option value="disapproval">ไม่อนุมัติ</option>
                 </select>
               </div>
-              <div class="col-12 col-sm-4 mb-2">
-              <label for='end'>Comment</label>
-              <input type='text' name='Comment' id='Comment' class='form-control' >
-            </div></div> <br>
+            </div> 
+
             <div class="row">
             <div class="col-12 col-sm-6">
               <button type="summit" class="btn btn-success btn-block">บันทึก</button>

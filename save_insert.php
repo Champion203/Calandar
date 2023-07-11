@@ -5,8 +5,9 @@
         $Room = $_POST["Ref_Room_id"];
         $time = $_POST["time"];
     }
-            $sql = "INSERT INTO Reserve_Room (ID_Reserve, FullName, department, organization, email, Name_Room, Name_Building, Start_Reserve, End_Reserve, time, Status_Reserve, Phone)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO Reserve_Room (ID_Reserve, FullName, department, organization, email, Name_Room, Name_Building, 
+            Start_Reserve, End_Reserve, time, Status_Reserve, Phone, Status_view)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $Status = "wait";
             function random_strings($length_of_string) 
@@ -80,7 +81,7 @@
 
             if(isset( $_POST["booking_date"])){
                 $params = array(random_strings(6), $_SESSION['displayname_th'], $_SESSION['department'], $_SESSION['organization'], $_SESSION['email'], 
-                $_POST["Ref_Room_id"], $Building_id, $datestart, $dateend, $_POST["time"], $Status, $_POST["Phone"]);
+                $_POST["Ref_Room_id"], $Building_id, $datestart, $dateend, $_POST["time"], $Status, $_POST["Phone"], 1);
                 $stmt = sqlsrv_query( $conn, $sql, $params);
             }
             if( $stmt === false ) {

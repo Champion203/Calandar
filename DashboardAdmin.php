@@ -29,16 +29,16 @@ echo "
   require ('header.html');
   require('ConnectDatabase.php'); 
   $StatusN = null;
-  $stmt = "SELECT * FROM Reserve_Room";
+  $stmt = "SELECT * FROM Reserve_Room WHERE Status_view LIKE '1'";
   if (isset($_GET['approve'])){
     $StatusN = 'approve';
-    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' ORDER BY ID" ;
+    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' AND Status_view LIKE '1' ORDER BY ID" ;
   } elseif (isset($_GET['wait'])){
     $StatusN = 'wait';
-    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' ORDER BY ID" ;
+    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' AND Status_view LIKE '1' ORDER BY ID" ;
   } elseif (isset($_GET['disapproval'])){
     $StatusN = 'disapproval';
-    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' ORDER BY ID" ;
+    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' AND Status_view LIKE '1' ORDER BY ID" ;
   }
   $query = sqlsrv_query($conn, $stmt);
 }
@@ -49,11 +49,11 @@ if (isset($_GET['del'])) {
   <script>
   Swal.fire({
     icon: 'warning',
-    title: 'ยกเลิกการจอง',
-    text: 'คุณต้องการยกเลิกการจอง',
+    title: 'ลบการจอง',
+    text: 'คุณต้องการลบการจอง',
     showCancelButton: true,
     cancelButtonColor: '#d33',
-    confirmButtonText: 'ยกเลิกการจอง',
+    confirmButtonText: 'ลบการจอง',
   }).then((result) => {
     if (result.value) {
       location.href='DashboardAdmin.php?del1=$del' ;
@@ -61,11 +61,22 @@ if (isset($_GET['del'])) {
   })
   </script>";
 }
+
 if (isset($_GET['del1'])){
-  $sql = "DELETE FROM Reserve_Room
+  // $sql = "DELETE FROM Reserve_Room
+  // WHERE ID_Reserve = ? ";
+  // $params = array($_GET['del1']);
+  //   $stmt = sqlsrv_query( $conn, $sql, $params);
+  $ID = $_GET['del1'];
+  $view = 0;
+  $dis = "disapproval";
+  $sql = "UPDATE Reserve_Room SET 
+  Status_view = ? ,
+  Status_Reserve = ?
   WHERE ID_Reserve = ? ";
-  $params = array($_GET['del1']);
-    $stmt = sqlsrv_query( $conn, $sql, $params);
+  $params = array($view, $dis, $ID);
+
+  $stmt = sqlsrv_query( $conn, $sql, $params);
     if( $stmt === false ) {
         die( print_r( sqlsrv_errors(), true));
   }
