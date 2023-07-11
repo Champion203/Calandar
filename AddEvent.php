@@ -140,7 +140,7 @@ body {
             <div class="col-12 col-sm-6 mb-2">
               <label for='end'>วันที่เข้ารับบริการ</label>
               <font color='red'> * </font>
-              <input type='date' name='booking_date' id='date' min='$min' class='form-control' required>
+              <input type='date' name='booking_date' id='date' min='<?php echo date('Y-m-d');?>' class='form-control' required>
             </div>
               <div class="col-12 col-sm-6 mb-3" >
                 <label for='end'>ช่วงเวลาที่เข้ารับบริการ</label>
