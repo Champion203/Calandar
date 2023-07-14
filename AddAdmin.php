@@ -93,7 +93,6 @@
 <style>
 
 body {
-  background-image: url('img/J4x.gif');
   margin: 0;
   padding: 0;
   font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
@@ -128,7 +127,6 @@ body {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
@@ -159,7 +157,7 @@ body {
             </select>
             </div></div>
             <div class="row">
-            <div class="col-12 col-sm-12">
+            <div class="d-grid gap-2 col-12 col-sm-12 mx-auto">
               <button type="summit" class="btn btn-success btn-block">เพิ่ม ADMIN</button>
             </div>
       </form></div> <hr>

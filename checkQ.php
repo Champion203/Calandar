@@ -9,7 +9,6 @@
         $time = $_POST["time"];
         $date = $_POST["booking_date"];
     }
-
     $sql1 = "SELECT * FROM Reserve_Room WHERE time LIKE 'all' AND Name_Room LIKE '%$Room%' AND Start_Reserve LIKE '%$date%' AND Status_Reserve != 'disapproval'";
     $params1 = array();
     $options1 =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );

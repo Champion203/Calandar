@@ -24,7 +24,6 @@ $query = sqlsrv_query($conn, $stmt);
 <style>
 
 body {
-  background-image: url('img/J4x.gif');
   margin: 0;
   padding: 0;
   font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
@@ -138,9 +137,11 @@ body {
             </div></div>
           <div class="row">
             <div class="col-12 col-sm-6 mb-2">
-              <label for='end'>วันที่เข้ารับบริการ</label>
+              <label for='end'>วันที่เข้ารับบริการ จองล่วง5วัน</label>
               <font color='red'> * </font>
-              <input type='date' name='booking_date' id='date' min='<?php echo date('Y-m-d');?>' class='form-control' required>
+              <?php $timestamp = (time()+ 86400 * 5);?>
+              <?php $timestampmax = (time()+ 86400 * 30);?>
+              <input type='date' name='booking_date' id='date' min='<?php echo date('Y-m-d' , $timestamp);?>' max='<?php echo date("Y-m-d", $timestampmax);?>' class='form-control' required>
             </div>
               <div class="col-12 col-sm-6 mb-3" >
                 <label for='end'>ช่วงเวลาที่เข้ารับบริการ</label>
@@ -152,12 +153,11 @@ body {
                 </select>
               </div>
             </div> 
-
             <div class="row">
-            <div class="col-12 col-sm-6">
-              <button type="summit" class="btn btn-success btn-block">เพิ่มกำหนดการ</button>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button type="summit" class="btn btn-success btn-block">บันทึก</button>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="d-grid gap-2 col-6 mx-auto">
               <button type="button" onclick="javascript:window.history.back()" class="btn btn-Danger btn-block">ย้อนกลับ</button>
             </div>
       </form>

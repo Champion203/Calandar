@@ -6,6 +6,7 @@
     "@fullcalendar/timegrid": "^6.1.4",
     "bootstrap-icons": "^1.10.3",
     "mdbootstrap": "^4.20.0",
-    "sweetalert2": "^11.7.1"
+    "sweetalert2": "^11.7.1",
+    "tw-elements": "^1.0.0-beta2"
   }
 }

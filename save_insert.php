@@ -98,7 +98,7 @@
                     showConfirmButton: false,
                     timer: 1500, });
                     setTimeout(function(){
-                        window.location.href = 'dasboard_user.php';
+                        window.location.href = 'index.php';
                     },1500);
                 </script>";
             }

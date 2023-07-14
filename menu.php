@@ -15,7 +15,7 @@ $row_count = sqlsrv_num_rows( $stmt );
 if ($row_count === false)
    echo "Error in retrieveing row count.";
 if ($row_count === 1)
-    require ('navbar.php');
+    require ('sidebar.php');
 elseif ($row_count === 0)
-    require ('navbaruser.php');
+    require ('sidebar2.php');
 ?>

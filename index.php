@@ -59,7 +59,6 @@ require('resource.php');
 <style>
 
   body {
-    background-image: url('img/J4x.gif');
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
@@ -97,9 +96,25 @@ require('resource.php');
 		top: 10px;
 		right: 10px;
 	}
+
+  div.relative {
+   position: relative;
+   width: 400px;
+   height: 200px;
+   border: 3px solid rgb(0, 0, 0);
+}
+div.absolute {
+   position: absolute;
+   top: 100px;
+   right: 0;
+   width: 300px;
+   height: 120px;
+   border: 3px solid rgb(0, 0, 0);
+}
 </style>
 </head>
 <body>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- OneTrust Cookies Consent Notice start for tu.ac.th -->
 <script type="text/javascript" src="https://cdn-apac.onetrust.com/consent/7dbccbf7-21b3-4ce1-93a9-9c2783ada201/OtAutoBlock.js" ></script>
 <script src="https://cdn-apac.onetrust.com/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="7dbccbf7-21b3-4ce1-93a9-9c2783ada201" ></script>
@@ -107,10 +122,9 @@ require('resource.php');
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for tu.ac.th -->
-  </div>  
   <div class="container-fluid">
 	<div class="row">
-  <div class="col-md-12" style="width:100%;">
+  <div class="col-md-12" >
       <img src="img/TRAINING.jpg"  style="width:100%;"> <hr>
   <div id='script-warning'>
 		This page should be running from a webserver, to allow fetching from the <code>json/</code> directory.
@@ -118,7 +132,7 @@ function OptanonWrapper() { }
   <div class="row">
   <div class="col-md-12" style="width:100%;">
   <div class="card">
-      <d class="card-body">
+      <div class="card-body">
       <div class="row">
       <div class="col-12 col-sm-3">
             <label for="sel1">หน่วยงานที่รับผิดชอบ</label>
@@ -130,31 +144,40 @@ function OptanonWrapper() { }
               </select>
             </div>
             <div class="col-12 col-sm-3 ">
+            <form action="Event.php" method="POST" enctype="multipart/form-data">
               <label for="sel1">ตึก</label>
               <select class="form-control" name="Ref_Building_id" id="Building" required>
               </select>
           </div> 
             <div class="col-12 col-sm-3">
-            <form action="index.php" method="POST" enctype="multipart/form-data">
             <label for="sel2">ห้องประชุม</label>
             <select class="form-control" name="Ref_Room_id" id="Room" required> 
             </select>
             </div> 
-          <div align="center" class="col-12 col-sm-1" style="margin:25px;">
-              <button type="summit" class="form-control btn-success text-white">ค้นหา</button>
+            <div class="col-12 col-sm-1">
+            <label for="sel2">ค้นหา</label>
+              <button type="summit" class="form-control btn btn-success">ค้นหา</button>
             </div>
-            <div align="center" class="col-12 col-sm-1" style="margin:25px;">
-              <a href="index.php" class="form-control bg-danger text-white">ยกเลิก</a>
+            <div class="col-12 col-sm-1">
+            <label for="sel2">ยกเลิก</label>
+              <a href="index.php" class="form-control btn btn-danger">ยกเลิก</a>
             </div>
           </div> </form> <hr>
 
   <div class="container-fluid">
   <div class="card">
       <div class="card-body">
+      <div class="row">
 		<div class="col-12 col-sm-12">
 			<div id='calendar'></div>
-		</div> </div> </div>
-	</div>
+    </div>
+    <!-- <div class="absolute"> คำแนะนำ <br>
+      - สีเหลือง หมายถึง สถานะรอการอนุมัติ <br>
+      - สีเขียว หมายถึง สถานะอนุมัติแล้ว  <br>    
+      - จองล่วงหน้า 5 วัน และล่วงหน้าไม่เกิน 30 วัน <br>
+      - ระยะเวลาอนุมัติ 5 วันทำการ
+    </div> -->
+</div>
 </div>
 </body>
 </html>
@@ -189,3 +212,20 @@ function OptanonWrapper() { }
     });
   });
 </script>
+
+<?php
+  if (isset($_GET['help'])) {
+    echo "
+    <script>
+    Swal.fire({
+      position : 'center-end',
+      title: 'HELP',
+      text: '1.สีเหลือง หมายถึง สถานะรอการอนุมัติ',
+      confirmButtonText: 'ฉันเข้าใจเเล้ว',
+    }).then((result) => {
+      if (result.value) {
+        location.href='index.php';
+      }
+    })
+    </script>";
+  }?>

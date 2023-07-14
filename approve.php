@@ -44,11 +44,6 @@
 <title>จัดการการจองห้อง</title> 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/dasboard.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
 </head>
 
 <body>
@@ -58,9 +53,6 @@
       <img src="img/TRAINING.jpg"  style="width:100%;"> <hr>
       <div class="card">
       <div class="card-body">
-      <!-- <div class=" bg-Dark text-white" role="alert">
-        <h3 class="text-center" >ระบบการจองห้องประชุมออนไลน์</h3> </div>
-      </div> </div> <br> -->
       <form action="save_approve.php" method="post" enctype="multipart/form-data">
       <div class="card">
       <div class="card-body">
@@ -118,10 +110,10 @@
             </div> 
 
             <div class="row">
-            <div class="col-12 col-sm-6">
+            <div class="d-grid gap-2 col-6 mx-auto">
               <button type="summit" class="btn btn-success btn-block">บันทึก</button>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="d-grid gap-2 col-6 mx-auto">
               <button type="button" onclick="javascript:window.history.back()" class="btn btn-Danger btn-block">ย้อนกลับ</button>
             </div>
       </form>

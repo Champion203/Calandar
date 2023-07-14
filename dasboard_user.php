@@ -1,5 +1,6 @@
 <?php 
 session_start();
+  require ('Header.html'); 
   require ('menu.php');
   // if (isset($_GET['del'])) {
   //   $del = $_GET['del'];
@@ -33,23 +34,23 @@ session_start();
           window.location.href = 'login.php';
        },1500);
   </script>";
-      }
+ } else {
+    if (isset($_SESSION['email'])){
+      $email = $_SESSION['email'] ;
+    }
+    require('ConnectDatabase.php'); 
+    $stmt = "SELECT * FROM Reserve_Room WHERE email LIKE '%".$email."%' ORDER BY ID";
+    $query = sqlsrv_query($conn, $stmt);
+    require ('header.html');
+ }
 
-  if (isset($_SESSION['email'])){
-    $email = $_SESSION['email'] ;
-  }
-  require('ConnectDatabase.php'); 
-  $stmt = "SELECT * FROM Reserve_Room WHERE email LIKE '%".$email."%' ORDER BY ID";
-  $query = sqlsrv_query($conn, $stmt);
-  require ('header.html');
   ?>
   <!DOCTYPE html>
   <html lang="th">
   <head>
-  <title>dasboard User</title> 
+  <title>dashboard User</title> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/dasboard.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
