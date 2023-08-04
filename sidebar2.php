@@ -13,105 +13,149 @@ require ('Header.html');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <style type="text/css">
-    body{
-        font-family: system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif;
-        font-size: 14px;
-    }
-    .pic_preview{height:auto;padding-bottom:100%;background-size:cover;background-position:center;}
-    .price{font-size: 18px;font-weight: 500;color: #f57224;}
-    .discount_price{font-size: 10px;color: #9e9e9e;}
-    .cus-icon:before {
-        width: 30px;
-        height: 30px;
-    }   
-    /*sidemenu ด้านซ้าย*/
-    .l-sidenav {
-        position: fixed; 
-        z-index: 1040; 
-        top: 0; 
-        left: 0;    
-        height: 100%; 
-        width: 0; 
-        overflow-x: hidden; 
-    }   
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  left: 120px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+.active {
+  background-color: green;
+  color: white;
+}
+
+    
     </style>
 </head>
 <body>
-  
-<!-- sidemenu ด้านซ้าย-->
-<nav class="l-sidenav bg-light">
-<div class="card bg-light">
-  <div class="navbar navbar-light">
-  <a class="invisible"></a>
-  <button type="button" class="close close-l-sidenav btn pl-2">	
-  <span aria-hidden="true">&times;</span>
-</button>
- 
-  </div>
-  <div class="card-body pt-1 text-center">
-  <!-- <i class='fas fa-user-alt' style='font-size:48px;color:red'></i> -->
-    <h6 class="card-title"><?php echo $_SESSION['displayname_th']; ?></h6>
-    <p class="card-text">
-    <?php echo $_SESSION['organization']; ?>
-    </p>
-  </div>
-</div>
-<ul class="list-group">
-  <li class="list-group-item align-items-center">
-  <a class="nav-link active" href="index.php">หน้าแรก</a>
-  </li></a>
-  <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-<ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    เมนู
-  </li></a>
-        <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-      <li class="w-100">
-        <a class="nav-link" href="dasboard_user.php">ข้อมูลการจองส่วนตัว</a>
-      </li>
-      <li>
-        <a class="nav-link" href="AddEvent.php">จองห้อง</a>
-      </li>
-  </ul>
-  </li>
 
-  <ul class="list-group">
-  <li class="list-group-item align-items-center">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a class="nav-link active" href="index.php">หน้าแรก</a>
+  <button class="dropdown-btn">เมนู 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+  <a class="nav-link" href="dasboard_user.php">ข้อมูลการจองส่วนตัว</a>
+  <a class="nav-link" href="AddEvent.php">จองห้อง</a>
+  </div>
   <a class="nav-link active" href="sidebar2.php?logout='1'">ออกจากระบบ</a>
-  </li></a>
-</nav>
+</div>
+
   
 <!-- ส่วนของการใช้งาน navbar-->
- <nav class="navbar navbar-dark bg-dark ">
+ <nav class="navbar navbar-dark bg-dark navbar-fixed-top">
 <!-- ปุมด้านซ้าย แสดงเมนู-->
   <button class="navbar-toggler border-0 px-0 open-l-sidenav"  type="button">
-    <i class="fas fa-bars cus-icon fa-fw py-1"></i>
-    <a class="navbar-brand">MENU</a>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; MENU</span>
   </button> 
 <!-- ปุมด้านขวา แสดงเมนู  -->
     <div class="btn-group">
     <a href="index.php" class="btn btn-primary"><i class="fas fa-home cus-icon py-1"></i></a>
       <button type="button" class="navbar-toggler border-0 px-2">
       </button>
-      <a href="sidebar2.php?logout='1'" class="btn btn-Danger"><i class="fas fa-sign-out-alt cus-icon py-1"></i></a>
+      <a href="sidebar.php?logout='1'" class="btn btn-Danger"><i class="fas fa-sign-out-alt cus-icon py-1"></i></a>
       <button type="button" class="navbar-toggler border-0 px-2">
       </button>
     </div>  
 </nav>
 
 
-   
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+</script>
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://unpkg.com/bootstrap@4.1.0/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-$(function(){
-    /*เมื่อปุ่มปิด หรือ เปิด เมนูด้านซ้ายถูกคลิก*/
-    $(".close-l-sidenav,.open-l-sidenav").on("click",function(){
-        var toggleWidth = ($(".l-sidenav").width()==0)?250:0;
-        $(".l-sidenav").width(toggleWidth);
-    });
-});
-</script>
 </body>
 </html>
 

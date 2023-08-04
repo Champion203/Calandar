@@ -5,7 +5,7 @@ require('ConnectDatabase.php');
         $username = $_SESSION['email'] ;
     }
 
-$sql = "SELECT * FROM Admin WHERE Username LIKE '$username'";
+$sql = "SELECT * FROM Admin WHERE Username = '$username'";
 $params = array();
 $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
 $stmt = sqlsrv_query( $conn, $sql , $params, $options );

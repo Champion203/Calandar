@@ -130,6 +130,7 @@ function OptanonWrapper() { }
       <div class="card-body">
       <div class="row">
       <div class="col-12 col-sm-3">
+      <form action="Event.php" method="POST" enctype="multipart/form-data">
             <label for="sel1">หน่วยงานที่รับผิดชอบ</label>
               <select class="form-control" name="Ref_Agenda_id" id="Agenda" required>
                     <option value="" selected disabled>-กรุณาเลือกหน่วยงาน-</option>
@@ -139,7 +140,6 @@ function OptanonWrapper() { }
               </select>
             </div>
             <div class="col-12 col-sm-3 ">
-            <form action="Event.php" method="POST" enctype="multipart/form-data">
               <label for="sel1">ตึก</label>
               <select class="form-control" name="Ref_Building_id" id="Building" required>
               </select>
@@ -175,6 +175,7 @@ function OptanonWrapper() { }
               <input type='text' name='organization' id='organization' value='<?php echo $_SESSION['organization']; ?>' class='form-control' disabled>
               <label for='end'>อีเมล์</label>
               <input type='text' name='email' id='email' value='<?php echo $_SESSION['email']; ?>' class='form-control' disabled>
+              <input type='text' name='Ref_Agenda_id' id='Agenda' value='<?php echo $_POST['Ref_Agenda_id']; ?>' class='form-control' hidden>
               <input type='text' name='Ref_Building_id' id='Building' value='<?php echo $_POST['Ref_Building_id']; ?>' class='form-control' hidden>
               <label for='end'>ห้อง</label>
               <input type='text' name='Ref_Room_id' id='Room' value='<?php echo $_POST['Ref_Room_id']; ?>' class='form-control' readonly>

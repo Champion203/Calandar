@@ -67,8 +67,8 @@ if (isset($_POST['UserName']) && isset($_POST['Password'])) {
       $txt_error = "UserName หรือ Password ของท่านไม่ถูกต้องกรุณา Login  ใหม่";
     } else {
       $data = json_decode($response);
-
         if ($data->{'status'} == "true"){
+        // if ($data->{'status'} == "true" && $data->{'type'} == "employee"){
           $_SESSION['department'] = $data->{'department'};
           $_SESSION['displayname_th'] = $data->{'displayname_th'};
           $_SESSION['email'] = $data->{'email'};

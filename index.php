@@ -111,6 +111,58 @@ div.absolute {
    height: 120px;
    border: 3px solid rgb(0, 0, 0);
 }
+
+#presentation:hover{
+  box-shadow: 0 12px 28px -5px rgba(0,0,0,0.13);
+  transition: all 0.3s;
+  transform: translateZ(10px);
+}
+
+#floating-button{
+  width: 55px;
+  height: 4S00px;
+  border-radius: 50%;
+  background: #db4437;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+}
+
+.letter{
+  font-size: 23px;
+  font-family: 'Roboto';
+  color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  line-height: 40px;
+}
+
+.reminder{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  line-height: 40px;
+}
+
+.profile{
+  border-radius: 50%;
+  width: 40px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  right: 20px;
+}
 </style>
 </head>
 <body>
@@ -135,6 +187,7 @@ function OptanonWrapper() { }
       <div class="card-body">
       <div class="row">
       <div class="col-12 col-sm-3">
+      <form action="Event.php" method="POST" enctype="multipart/form-data">
             <label for="sel1">หน่วยงานที่รับผิดชอบ</label>
               <select class="form-control" name="Ref_Agenda_id" id="Agenda" required>
                     <option value="" selected disabled>-กรุณาเลือกหน่วยงาน-</option>
@@ -144,7 +197,6 @@ function OptanonWrapper() { }
               </select>
             </div>
             <div class="col-12 col-sm-3 ">
-            <form action="Event.php" method="POST" enctype="multipart/form-data">
               <label for="sel1">ตึก</label>
               <select class="form-control" name="Ref_Building_id" id="Building" required>
               </select>
@@ -155,8 +207,8 @@ function OptanonWrapper() { }
             </select>
             </div> 
             <div class="col-12 col-sm-1">
-            <label for="sel2">ค้นหา</label>
-              <button type="summit" class="form-control btn btn-success">ค้นหา</button>
+            <label for="sel2">จองห้อง</label>
+              <button type="summit" class="form-control btn btn-success">จอง</button>
             </div>
             <div class="col-12 col-sm-1">
             <label for="sel2">ยกเลิก</label>
@@ -179,6 +231,33 @@ function OptanonWrapper() { }
     </div> -->
 </div>
 </div>
+<div id="container-floating">
+  <div id="floating-button">
+  <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal"><i class="material-icons">help</i></button>
+  </div>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">เงื่อนไขการใช้งาน</h4>
+        </div>
+        <div class="modal-body">
+          <p align="left">      
+            1. ป้ายสีเหลือง หมายถึง สถานะรอการอนุมัติ <br>
+            2. ป้ายสีเขียว หมายถึง สถานะอนุมัติแล้ว  <br>    
+            3. จองล่วงหน้า 5 วัน และล่วงหน้าไม่เกิน 30 วัน <br>
+            4. ระยะเวลาอนุมัติ 5 วันทำการ <br>
+            5. กรณียกเลิกต้องล่วงหน้า 3 วันก่อนถึงวันใช้งาน <br>
+            6. เมื่อจองแล้วไม่มาใช้งานเกิน 2 ครั้งจะถูกแบนไม่ให้ใช้งาน
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
 

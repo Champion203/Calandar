@@ -5,9 +5,9 @@
         $Room = $_POST["Ref_Room_id"];
         $time = $_POST["time"];
     }
-            $sql = "INSERT INTO Reserve_Room (ID_Reserve, FullName, department, organization, email, Name_Room, Name_Building, 
-            Start_Reserve, End_Reserve, time, Status_Reserve, Phone, Status_view)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO Reserve_Room ( ID_Reserve, FullName, department, organization, email, Name_Room, Name_Building, 
+            Start_Reserve, End_Reserve, time, Status_Reserve, Phone, Status_view, Name_Agenda)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $Status = "wait";
             function random_strings($length_of_string) 
@@ -18,6 +18,15 @@
             //ทำการตัด string ตามจำนวนที่ใส่เข้ามา
             $resultChar = substr($str, 0, $length_of_string); 
             return $resultChar;
+            }
+            if ($_POST["Ref_Agenda_id"] == "1"){
+                $Agenda_id = "สำนักงานเทคโนโลยีสารสนเทศเเละการสื่อสาร";
+            } elseif ($_POST["Ref_Agenda_id"] == "2"){
+                $Agenda_id = "กองบริหารศูนย์รังสิต";
+            } elseif ($_POST["Ref_Agenda_id"] == "3"){
+                $Agenda_id = "คณะสังคมวิทยาและมานุษยวิทยา";
+            } elseif ($_POST["Ref_Agenda_id"] == "4"){
+                $Agenda_id = "คณะนิติศาสตร์ ";
             }
             
             if ($_POST["Ref_Building_id"] == "1"){
@@ -81,7 +90,7 @@
 
             if(isset( $_POST["booking_date"])){
                 $params = array(random_strings(6), $_SESSION['displayname_th'], $_SESSION['department'], $_SESSION['organization'], $_SESSION['email'], 
-                $_POST["Ref_Room_id"], $Building_id, $datestart, $dateend, $_POST["time"], $Status, $_POST["Phone"], 1);
+                $_POST["Ref_Room_id"], $Building_id, $datestart, $dateend, $_POST["time"], $Status, $_POST["Phone"], 1, $Agenda_id);
                 $stmt = sqlsrv_query( $conn, $sql, $params);
             }
             if( $stmt === false ) {
@@ -101,6 +110,7 @@
                         window.location.href = 'index.php';
                     },1500);
                 </script>";
+                require ('notify.php');
             }
             sqlsrv_close($conn);
 ?>

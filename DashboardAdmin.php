@@ -2,11 +2,13 @@
 session_start();
 require ('menu.php');
 require('ConnectDatabase.php'); 
+$number = 1;
+$organization = $_SESSION['organization'];
   if (isset($_SESSION['email'])){
     $username = $_SESSION['email'] ;
   }
 
-  $sql = "SELECT * FROM Admin WHERE Username LIKE '$username'";
+  $sql = "SELECT * FROM Admin WHERE Username = '$username'";
   $params = array();
   $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
   $stmt = sqlsrv_query( $conn, $sql , $params, $options );
@@ -29,18 +31,40 @@ echo "
   require ('header.html');
   require('ConnectDatabase.php'); 
   $StatusN = null;
-  $stmt = "SELECT * FROM Reserve_Room WHERE Status_view LIKE '1'";
-  if (isset($_GET['approve'])){
-    $StatusN = 'approve';
-    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' AND Status_view LIKE '1' ORDER BY ID" ;
-  } elseif (isset($_GET['wait'])){
-    $StatusN = 'wait';
-    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' AND Status_view LIKE '1' ORDER BY ID" ;
-  } elseif (isset($_GET['disapproval'])){
-    $StatusN = 'disapproval';
-    $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve LIKE '$StatusN' AND Status_view LIKE '1' ORDER BY ID" ;
-  }
-  $query = sqlsrv_query($conn, $stmt);
+
+  $sql = "SELECT * FROM Admin WHERE Username = '$username' AND Class = 'SuperAdmin'";
+  $params = array();
+  $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+  $stmt = sqlsrv_query( $conn, $sql , $params, $options );
+  $row_count = sqlsrv_num_rows( $stmt );
+
+  if ($row_count === 1){  //check session
+    $stmt = "SELECT * FROM Reserve_Room WHERE Status_view <> '0'";
+    if (isset($_GET['approve'])){
+      $StatusN = 'approve';
+      $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve = '$StatusN' AND Status_view <> '0' ORDER BY ID" ;
+    } elseif (isset($_GET['wait'])){
+      $StatusN = 'wait';
+      $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve = '$StatusN' AND Status_view <> '0' ORDER BY ID" ;
+    } elseif (isset($_GET['disapproval'])){
+      $StatusN = 'disapproval';
+      $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve = '$StatusN' AND Status_view <> '0' ORDER BY ID" ;
+    }
+    $query = sqlsrv_query($conn, $stmt);
+    } else {
+      $stmt = "SELECT * FROM Reserve_Room WHERE Status_view <> '0' AND Name_Agenda = '$organization'";
+      if (isset($_GET['approve'])){
+        $StatusN = 'approve';
+        $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve = '$StatusN' AND Status_view <> '0' AND Name_Agenda = '$organization' ORDER BY ID" ;
+      } elseif (isset($_GET['wait'])){
+        $StatusN = 'wait';
+        $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve = '$StatusN' AND Status_view <> '0' AND Name_Agenda = '$organization' ORDER BY ID" ;
+      } elseif (isset($_GET['disapproval'])){
+        $StatusN = 'disapproval';
+        $stmt = "SELECT * FROM Reserve_Room WHERE Status_Reserve = '$StatusN' AND Status_view <> '0' AND Name_Agenda = '$organization' ORDER BY ID" ;
+      }
+      $query = sqlsrv_query($conn, $stmt);
+    }
 }
 
 if (isset($_GET['del'])) {
@@ -151,7 +175,7 @@ if (isset($_GET['del1'])){
                   $datestart=date_create($result['Start_Reserve']);
                   $dateend=date_create("$end");?>
                   <tr>
-                      <td align="center"><?php echo $result["ID"]; ?></td>
+                      <td align="center"><?php echo $number; ?></td>
                       <td align="center"><?php echo $result["ID_Reserve"]; ?></td>
                       <td align="center"><?php echo $result["Name_Building"]; ?></td>
                       <td align="center"><?php echo $result["Name_Room"]; ?></td>
@@ -159,19 +183,21 @@ if (isset($_GET['del1'])){
                       <td align="center"><?php echo date_format($datestart,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
                       <td align="center"><?php echo date_format($dateend,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
                       <td align="center">  <?php if ($result['Status_Reserve'] == 'approve') { ?>
-                              <span class="badge bg-success">อนุมัติ</span>                     
+                        <span class="badge bg-success">อนุมัติ</span>                     
                             <?php }elseif ($result['Status_Reserve'] == 'wait') { ?>
                               <span class="badge bg-info">รออนุมัติ</span>
+                            <?php }elseif ($result['Status_Reserve'] == 'cancel') { ?>
+                              <span class="badge bg-danger">ยกเลิก</span>
                             <?php } else { ?>
                               <span class="badge bg-danger">ไม่อนุมัติ</span>
-                            <?php } ?>
+                            <?php }?></td>
                      </td>
                       <td align="center"><a href="approve.php?ID_Reserve=<?php echo $result["ID_Reserve"];?>" title="จัดการ"><i style='font-size:24px' class='material-icons'>&#xe065;</i></a>
                       <a href="PDF.php?id=<?php echo $result["ID"];?>" title="exportPDF"><i class="material-icons" style="font-size:24px">&#xe555;</i></a>
                       <a href="DashboardAdmin.php?del=<?php echo $result["ID_Reserve"];?>" title="ยกเลิกการจอง"><i class="material-icons" style="font-size:24px">&#xe92b;</i></a></td>
 
                   </tr>
-              <?php } ?> 
+              <?php $number++; } ?> 
           <tfoot>
           <tr>
           <th >ลำดับ</th>

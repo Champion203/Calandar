@@ -2,24 +2,71 @@
 session_start();
   require ('Header.html'); 
   require ('menu.php');
-  // if (isset($_GET['del'])) {
-  //   $del = $_GET['del'];
-  //   echo "
-  //   <script>
-  //   Swal.fire({
-  //     icon: 'warning',
-  //     title: 'ยกเลิกการจอง',
-  //     text: 'คุณต้องการยกเลิกการจอง',
-  //     showCancelButton: true,
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'ยกเลิกการจอง',
-  //   }).then((result) => {
-  //     if (result.value) {
-  //       location.href='deleted.php?del=$del' ;
-  //     }
-  //   })
-  //   </script>";
-  // }
+  $number = 1;
+  if (isset($_GET['del'])) {
+    $del = $_GET['del'];
+    echo "
+    <script>
+    Swal.fire({
+      icon: 'warning',
+      title: 'ลบการจอง',
+      text: 'คุณต้องการลบการจอง',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ลบการจอง',
+    }).then((result) => {
+      if (result.value) {
+        location.href='dasboard_user.php?del1=$del' ;
+      }
+    })
+    </script>";
+  }
+
+  if (isset($_GET['del1'])){
+    if ($datediff >= '3'){
+      echo "
+      <script>
+      Swal.fire({
+          position: 'top-center',
+          icon: 'error',
+          title: 'ไม่สามารถลบได้เนื่องจากเกินวันที่กำหนด',
+          showConfirmButton: false,
+          timer: 800, });
+          setTimeout(function(){
+              window.location.href = 'dasboard_user.php';
+           },1500);
+      </script>";
+    }
+    $ID = $_GET['del1'];
+    $view = 2;
+    $dis = "cancel";
+    $sql = "UPDATE Reserve_Room SET 
+    Status_view = ? ,
+    Status_Reserve = ?
+    WHERE ID_Reserve = ? ";
+    $params = array($view, $dis, $ID);
+  
+    $stmt = sqlsrv_query( $conn, $sql, $params);
+      if( $stmt === false ) {
+          die( print_r( sqlsrv_errors(), true));
+    }
+      else
+      {
+          echo "
+          <script>
+          Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'ลบเรียบร้อย',
+              showConfirmButton: false,
+              timer: 1500, });
+              setTimeout(function(){
+                  window.location.href = 'dasboard_user.php';
+              },1500);
+          </script>";
+      }
+    sqlsrv_close($conn);
+  }
 
   if (!$_SESSION["displayname_th"]){  //check session
   echo "
@@ -39,7 +86,7 @@ session_start();
       $email = $_SESSION['email'] ;
     }
     require('ConnectDatabase.php'); 
-    $stmt = "SELECT * FROM Reserve_Room WHERE email LIKE '%".$email."%' ORDER BY ID";
+    $stmt = "SELECT * FROM Reserve_Room WHERE email = '$email' AND Status_view <> '0' ORDER BY ID";
     $query = sqlsrv_query($conn, $stmt);
     require ('header.html');
  }
@@ -88,12 +135,13 @@ function OptanonWrapper() { }
   <ul class="nav navbar-nav navbar-right">
   <table id="tables" class="table table-striped table-bordered" style="width:100%">
       <thead>
-          <tr>
+          <tr><th>ลำดับ</th>
               <th>ชื่อ-นามสกุล</th>
               <th>ห้องประชุม</th>
               <th>เริ่ม</th>
               <th>สิ้นสุด</th>
               <th>สถานะ</th>
+              <th>ยกเลิก</th>
           </tr>
           </th>
           <tbody>
@@ -102,8 +150,14 @@ function OptanonWrapper() { }
                               $end = str_replace("T"," ",$result['End_Reserve']);
                               $datestart=date_create("$start");
                               $dateend=date_create("$end");
+
+                              $date1 = date_create(date_format($datestart,"Y/m/d"));
+                              $date2 = date_create(date("Y/m/d"));
+                              $diff = date_diff($date2,$date1);
+                              $datediff = $diff->format("%R%a");
                               ?>
                   <tr>
+                      <td align="center"><?php echo $number; ?></td>
                       <td align="center"><?php echo $result["FullName"]; ?></td>
                       <td align="center"><?php echo $result["Name_Room"]; ?></td>
                       <td align="center"><?php echo date_format($datestart,"วันที่ d/m/Y เวลา H:i:s น."); ?></td>
@@ -112,18 +166,28 @@ function OptanonWrapper() { }
                               <span class="badge bg-success">อนุมัติ</span>                     
                             <?php }elseif ($result['Status_Reserve'] == 'wait') { ?>
                               <span class="badge bg-info">รออนุมัติ</span>
+                            <?php }elseif ($result['Status_Reserve'] == 'cancel') { ?>
+                              <span class="badge bg-danger">ยกเลิก</span>
                             <?php } else { ?>
                               <span class="badge bg-danger">ไม่อนุมัติ</span>
                             <?php }?></td>
-                  </tr>
-              <?php } ?> 
+                            <td><center><?php 
+                            $id = $result["ID_Reserve"];
+                            if ($datediff < '3') { 
+                              echo "<input type='button' class='btn btn-danger disabled' value='ยกเลิก'>";
+                            }elseif ($datediff >= '3') { 
+                              echo "<a href='dasboard_user.php?del=$id' class='btn btn-danger' role='button'>ยกเลิก</a>";
+                            }?></td></center>
+                          </tr>
+              <?php $number++; } ?>
           <tfoot>
-          <tr>
+          <tr><th>ลำดับ</th>
             <th>ชื่อ-นามสกุล</th>
               <th>ห้องประชุม</th>
               <th>เริ่ม</th>
               <th>สิ้นสุด</th>
               <th>สถานะ</th>
+              <th>ยกเลิก</th>
           </tr>
           </tfoot>
           </tbody>

@@ -40,7 +40,7 @@
         },1000);
   </script>";
   } elseif ($row_count === 1) {
-    $stmt = "SELECT * FROM Admin ORDER BY ID" ;
+    $stmt = "SELECT * FROM Ban_User ORDER BY ID" ;
     $query = sqlsrv_query($conn, $stmt);
   }
   $i = 1;
@@ -51,20 +51,20 @@
     <script>
       Swal.fire({
         icon: 'warning',
-        title: 'ลบสิทธิ์',
-        text: 'คุณต้องการลบสิทธิ์',
+        title: 'ลบ',
+        text: 'คุณต้องการลบ',
         showCancelButton: true,
         cancelButtonColor: '#d33',
-        confirmButtonText: 'ลบสิทธิ์',
+        confirmButtonText: 'ลบ',
       }).then((result) => {
         if (result.value) {
-          location.href='AddAdmin.php?del1=$del' ;
+          location.href='baned.php?del1=$del' ;
         }
     })
     </script>";
   }
   if (isset($_GET['del1'])) {
-    $sql = "DELETE FROM Admin
+    $sql = "DELETE FROM Ban_User
     WHERE ID = ? ";
 
     $params = array($_GET['del1']);
@@ -83,7 +83,7 @@
                 showConfirmButton: false,
                 timer: 1500, });
                 setTimeout(function(){
-                    window.location.href = 'AddAdmin.php';
+                    window.location.href = 'baned.php';
                 },1500);
           </script>";
       }
@@ -123,7 +123,6 @@ body {
 <html lang="en">
 
 <head>
-  <title>Add Admin</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -137,7 +136,7 @@ body {
       <img src="img/TRAINING.jpg"  style="width:100%;"> <hr>
       <div class="card">
       <div class="card-body">
-      <form action="save_admin.php" method="post" enctype="multipart/form-data">
+      <form action="ban_user.php" method="post" enctype="multipart/form-data">
       <div class="card">
       <div class="card-body">
       <div class="row">
@@ -147,18 +146,17 @@ body {
               <input type='text' name='Email' id='Email' placeholder='xxxx@tu.ac.th' class='form-control' required>
             </div>
             <div class="col-12 col-sm-6 mb-2">
-            <label for="class">ระดับ :</label>
+            <label for="class">ระงับการใช้งาน :</label>
             <font color='red'> * </font>
-                <select class='form-control' id='class' name='Class' placeholder='xxxx@tu.ac.th' required>
+                <select class='form-control' id='Baned' name='Baned' placeholder='xxxx@tu.ac.th' required>
                 <option value="" selected disabled>-กรุณาเลือกระดับ-</option>
-                <option>SuperAdmin</option>
-                <option>Admin</option>
-                <option>User</option>
+                <option>ตักเตือน</option>
+                <option>ระงับการใช้งาน</option>
             </select>
             </div></div>
             <div class="row">
             <div class="d-grid gap-2 col-12 col-sm-12 mx-auto">
-              <button type="summit" class="btn btn-success btn-block">เพิ่ม ADMIN</button>
+              <button type="summit" class="btn btn-danger btn-block">BANED</button>
             </div>
       </form></div> <hr>
       <table id="tables" class="table table-striped table-bordered" style="width:100%">
@@ -178,9 +176,9 @@ body {
                   $dateend=date_create("$end");?>
                   <tr>
                       <td align="center"><?php echo $i; ?></td>
-                      <td align="center"><?php echo $result["Username"]; ?></td>
-                      <td align="center"><?php echo $result["Class"]; ?></td>
-                      <td align="center"><a href="AddAdmin.php?del=<?php echo $result["ID"];?>" title="Delete"><i class="material-icons" style="font-size:24px">&#xe92b;</i></a></td>
+                      <td align="center"><?php echo $result["Email"]; ?></td>
+                      <td align="center"><?php echo $result["Baned"]; ?></td>
+                      <td align="center"><a href="baned.php?del=<?php echo $result["ID"];?>" title="Delete"><i class="material-icons" style="font-size:24px">&#xe92b;</i></a></td>
               <?php $i++; } ?> 
           <tfoot>
           <tr>

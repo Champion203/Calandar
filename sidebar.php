@@ -46,7 +46,7 @@ body {
 .sidenav .closebtn {
   position: absolute;
   top: 0;
-  right: 25px;
+  left: 120px;
   font-size: 36px;
   margin-left: 50px;
 }
@@ -90,6 +90,7 @@ body {
   background-color: green;
   color: white;
 }
+
     
     </style>
 </head>
@@ -97,18 +98,24 @@ body {
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-    <button class="dropdown-btn">Dropdown 
+  <a class="nav-link active" href="index.php">หน้าแรก</a>
+  <button class="dropdown-btn">เมนู 
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
+  <a class="nav-link" href="dasboard_user.php">ข้อมูลการจองส่วนตัว</a>
+  <a class="nav-link" href="AddEvent.php">จองห้อง</a>
   </div>
+  <button class="dropdown-btn">เมนูแอดมิน
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+  <a class="nav-link" href="dashboardAdmin.php">จัดการ</a>
+  <a class="nav-link" href="EventAdmin.php">จองห้อง</a>
+  <a class="nav-link" href="AddAdmin.php">เพิ่มแอดมิน</a>
+  <a class="nav-link" href="baned.php">ระงับการใช้งานผู้ใช้</a>
+  </div>
+  <a class="nav-link active" href="sidebar.php?logout='1'">ออกจากระบบ</a>
 </div>
 
   
