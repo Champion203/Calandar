@@ -8,6 +8,14 @@
         $Status = $_POST["Status"] ;
         $Comment = $_POST["Comment"] ;
         $ID = $_POST["ID"] ;
+        $email = $_POST["email"] ;
+        $Name = $_POST["Name"] ;
+        $Phone = $_POST["Phone"] ;
+        $Start = $_POST["Start"] ;
+        $End = $_POST["End"] ;
+        $buiding = $_POST["buiding"] ;
+        $Name_Room = $_POST["Name_Room"] ;
+  
     }
 
 	$sql = "UPDATE Reserve_Room SET 
@@ -21,6 +29,7 @@
 	}
 	else
 	{
+        require ('email_apporve.php');
         echo "
         <script>
         Swal.fire({

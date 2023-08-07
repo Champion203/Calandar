@@ -60,30 +60,30 @@
             <div class="col-12 col-sm-6 mb-2">
             <input type='text' name='ID' id='ID' value='<?php echo $result['ID_Reserve']; ?>' class='form-control' hidden>
               <label for='end'>ชื่อ-นามสกุล ผู้จอง</label>
-              <input type='text' name='Name' id='Name' value='<?php echo $result['FullName']; ?>' class='form-control' disabled>
+              <input type='text' name='Name' id='Name' value='<?php echo $result['FullName']; ?>' class='form-control' readonly>
             </div>
             <div class="col-12 col-sm-6 mb-2">
             <label for='end'>เบอร์โทรศัพท์</label>
-              <input type='text' name='Detail' id='Detail' value='<?php echo $result['Phone']; ?>' class='form-control' disabled>
+              <input type='text' name='Phone' id='Phone' value='<?php echo $result['Phone']; ?>' class='form-control' readonly>
             </div></div>
             <div class="row">
             <div class="col-12 col-sm-6 mb-2">
               <label for='end'>หน่วยงาน</label>
-              <input type='text' name='organization' id='organization' value='<?php echo $result['organization']; ?>' class='form-control' disabled>
+              <input type='text' name='organization' id='organization' value='<?php echo $result['organization']; ?>' class='form-control' readonly>
             </div>
             <div class="col-12 col-sm-6 mb-2">
               <label for='end'>อีเมล์</label>
-              <input type='text' name='email' id='email' value='<?php echo $result['email']; ?>' class='form-control' disabled>
+              <input type='text' name='email' id='email' value='<?php echo $result['email']; ?>' class='form-control' readonly>
             </div></div>
 
             <div class="row">
             <div class="col-12 col-sm-6 mb-2">
             <label for='end'>วันเวลาที่เริ่มต้น</label>
-              <input type='datetime-local' name='Start' id='Start' value='<?php echo $result['Start_Reserve']; ?>' class='form-control' disabled>
+              <input type='datetime-local' name='Start' id='Start' value='<?php echo $result['Start_Reserve']; ?>' class='form-control' readonly>
             </div>
             <div class="col-12 col-sm-6 mb-2">
             <label for='end'>วันเวลาที่สิ้นสุด</label>
-             <input type='datetime-local' name='End' id='End' value='<?php echo $result['End_Reserve']; ?>' class='form-control' disabled>
+             <input type='datetime-local' name='End' id='End' value='<?php echo $result['End_Reserve']; ?>' class='form-control' readonly>
             </div></div>
 
         <div class="row">
@@ -91,11 +91,11 @@
             <div class="row">
               <div class="col-12 col-sm-6 mb-2">
               <label for='end'>ตึก</label>
-              <input type='text' name='email' id='buiding' value='<?php echo $result['Name_Building']; ?>' class='form-control' disabled>
+              <input type='text' name='buiding' id='buiding' value='<?php echo $result['Name_Building']; ?>' class='form-control' readonly>
             </div>
             <div class="col-12 col-sm-6 mb-2">
             <label for='end'>ห้องประชุม</label>
-             <input type='text' name='Name_Room' id='Name_Room' value='<?php echo $result['Name_Room']; ?>' class='form-control' disabled>
+             <input type='text' name='Name_Room' id='Name_Room' value='<?php echo $result['Name_Room']; ?>' class='form-control' readonly>
             </div></div>
           <div class="row">
               <div class="col-12 col-sm-6 mb-3" >

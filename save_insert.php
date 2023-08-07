@@ -98,6 +98,8 @@
             }
             else
             {
+                require ('notify.php');
+                require ('sendmail.php');
                 echo "
                 <script>
                 Swal.fire({
@@ -110,7 +112,6 @@
                         window.location.href = 'index.php';
                     },1500);
                 </script>";
-                require ('notify.php');
             }
             sqlsrv_close($conn);
 ?>
