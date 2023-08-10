@@ -98,6 +98,9 @@ body {
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div align="center">
+  <img src="img/logotu.png" alt="logo_TU" style="width:150px;height:150px;">
+  <a class="nav-link active" href="#">ชื่อผู้ใช้: <?php echo $_SESSION['displayname_th']; ?></a>
   <a class="nav-link active" href="index.php">หน้าแรก</a>
   <button class="dropdown-btn">เมนู 
     <i class="fa fa-caret-down"></i>
@@ -116,7 +119,7 @@ body {
   <a class="nav-link" href="baned.php">ระงับการใช้งานผู้ใช้</a>
   </div>
   <a class="nav-link active" href="sidebar.php?logout='1'">ออกจากระบบ</a>
-</div>
+</div></div>
 
   
 <!-- ส่วนของการใช้งาน navbar-->

@@ -30,6 +30,7 @@
 
 <?php
 session_start();
+require('ConnectDatabase.php'); 
 $username = null;
 $password = null;
 if (isset($_POST['UserName']) && isset($_POST['Password'])) {
@@ -73,6 +74,19 @@ if (isset($_POST['UserName']) && isset($_POST['Password'])) {
           $_SESSION['displayname_th'] = $data->{'displayname_th'};
           $_SESSION['email'] = $data->{'email'};
           $_SESSION['organization'] = $data->{'organization'};
+          $Email = $_SESSION['email'];
+
+          $sql = "SELECT * FROM Ban_User WHERE Email = '$Email' AND Baned = 'ตักเตือน'";
+          $params = array();
+          $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+          $stmt = sqlsrv_query( $conn, $sql , $params, $options );
+          $row_count = sqlsrv_num_rows( $stmt );
+
+          $sql = "SELECT * FROM Ban_User WHERE Email = '$Email' AND Baned = 'ระงับการใช้งาน'";
+          $params = array();
+          $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+          $stmt1 = sqlsrv_query( $conn, $sql , $params, $options );
+          $row_count1 = sqlsrv_num_rows( $stmt1 );
           
           if ($data->{'displayname_th'} == "ทศพร ยั่งยืน"){
             echo "
@@ -86,6 +100,36 @@ if (isset($_POST['UserName']) && isset($_POST['Password'])) {
                 setTimeout(function(){
                     window.location.href = 'index.php';
                  },1500);
+            </script>";
+          }elseif ($row_count === 1){
+            echo "
+            <script>
+            Swal.fire({
+              icon: 'warning',
+              title: 'ตักเตือน',
+              text: 'คุณโดนตักเตือนจากระบบเนื่องจากคุณไม่มาเข้าใช้งานห้องตามที่กำหนดเงื่อนไขโปรดระมัดระวังในการจองครั้งต่อไป',
+              showCancelButton: true,
+              confirmButtonText: 'ฉันเข้าใจแล้ว',
+            }).then((result) => {
+              if (result.value) {
+                location.href='index.php' ;
+              }
+            })
+            </script>";
+          }elseif ($row_count1 === 1){
+            echo "
+            <script>
+            Swal.fire({
+              icon: 'error',
+              title: 'ระงับการใช้งาน',
+              text: 'คุณโดนระงับการใช้งานเนื่องจากไม่เข้าใช้งานห้องตามกำหนดเกิน 2 ครั้งโปรดติดต่อเจ้าหน้าที่ดูแลระบบ LINE : icttuhelpdesk',
+              showCancelButton: true,
+              confirmButtonText: 'ฉันเข้าใจแล้ว',
+            }).then((result) => {
+              if (result.value) {
+                location.href='logout.php' ;
+              }
+            })
             </script>";
           } else {
             echo "
