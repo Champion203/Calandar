@@ -17,10 +17,13 @@
 <div style="overflow-x:auto;">
 <div style="overflow-x:auto;">
 <form class="login" action="login.php" method="post">
-  <h1> Sign in </h1>
+<div align="center">
+  <img src="img/logotu.png" alt="logo_TU" style="width:150px;height:150px;">
+  <h1>ระบบจองห้องออนไลน์</h1></div>
   <input type="text" placeholder="Username" name="UserName" required>
   <input type="password" placeholder="Password" name="Password" required>
-  <button type="submit">Login</button>
+  <button type="submit" class="btn btn-primary">Login</button> <hr>
+  <p align="center">© Office of the Information and Communication Technology at Thammasat University</p>
 </form>	
 </div>
 </div>

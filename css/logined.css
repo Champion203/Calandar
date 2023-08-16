@@ -64,11 +64,11 @@ body {
     margin-top: 10px;
     margin-left: -5px;
     border-radius: 5px;
-    background-color: #f45b69;
+    background-color: #4548e4;
     transition: background-color 300ms;
   }
   .login > button:hover {
-    background-color: #f24353;
+    background-color: #4548e4;
   }
   
   @-webkit-keyframes wawes {
