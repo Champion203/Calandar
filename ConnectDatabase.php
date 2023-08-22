@@ -1,5 +1,5 @@
 <?php
-    	$serverName = "172.26.96.1"; //172.30.208.1
+    	$serverName = "172.23.144.1"; //172.30.208.1
         $userName = "sa";
         $userPassword = "P@ssw0rd";
         $dbName = "Reverse_Room";

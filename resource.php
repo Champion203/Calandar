@@ -4,10 +4,10 @@
 	$stmt = "SELECT * FROM Agenda";
 	$query = sqlsrv_query($conn, $stmt);
 
-	$sql3 = "SELECT * FROM Reserve_Room WHERE Status_Reserve <> 'disapproval' ";
+	$sql3 = "SELECT * FROM Reserve_Room WHERE Status_Reserve <> 'disapproval' AND Status_Reserve <> 'cancel'";
 	if (isset($_POST['Ref_Room_id'])){
 	$nameroom = $_POST['Ref_Room_id'];
-	$sql3 = "SELECT * FROM Reserve_Room WHERE Name_Room LIKE '%$nameroom%' AND Status_Reserve <> 'disapproval'";
+	$sql3 = "SELECT * FROM Reserve_Room WHERE Name_Room LIKE '%$nameroom%' AND Status_Reserve <> 'disapproval' AND Status_Reserve <> 'cancel'";
 	}
 	$params = array();
 	$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
