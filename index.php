@@ -211,8 +211,8 @@ function OptanonWrapper() { }
               <button type="summit" class="form-control btn btn-success">จอง</button>
             </div>
             <div class="col-12 col-sm-1">
-            <label for="sel2">ยกเลิก</label>
-              <a href="index.php" class="form-control btn btn-danger">ยกเลิก</a>
+            <label for="sel2">ล้าง</label>
+              <a href="index.php" class="form-control btn btn-danger">ล้าง</a>
             </div>
           </div> </form> <hr>
 

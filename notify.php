@@ -12,7 +12,7 @@ $str = 'แจ้งเตือนคำร้องขอจองห้อง
 "\n". 'อาคาร: '.$Building_id.
 "\n". 'เริ่มวันที่: ' .$datestart. ' น.'.
 "\n". 'ถึงวันที่: ' .$dateend. ' น.'.
-"\n". 'ตรวจสอบรายละเอียดทาง: http://localhost:8081/meetingroom/dashboardAdmin.php';
+"\n". 'ตรวจสอบรายละเอียดทาง: https://reserve.sa.ict.tu.ac.th/';
 
 //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
 $res = notify_message($str,$token);

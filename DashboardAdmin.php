@@ -194,7 +194,7 @@ if (isset($_GET['del1'])){
                      </td>
                       <td align="center"><a href="approve.php?ID_Reserve=<?php echo $result["ID_Reserve"];?>" title="จัดการ"><i style='font-size:24px' class='material-icons'>&#xe065;</i></a>
                       <a href="PDF.php?id=<?php echo $result["ID"];?>" title="exportPDF"><i class="material-icons" style="font-size:24px">&#xe555;</i></a>
-                      <a href="DashboardAdmin.php?del=<?php echo $result["ID_Reserve"];?>" title="ยกเลิกการจอง"><i class="material-icons" style="font-size:24px">&#xe92b;</i></a></td>
+                      <a href="DashboardAdmin.php?del=<?php echo $result["ID_Reserve"];?>" title="ลบการจอง"><i class="material-icons" style="font-size:24px">&#xe92b;</i></a></td>
 
                   </tr>
               <?php $number++; } ?> 

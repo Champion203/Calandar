@@ -1,8 +1,10 @@
-
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css" rel="stylesheet">
 <head>
   <title>เข้าสู่ระบบ</title>
   <meta charset="utf-8">
@@ -30,16 +32,11 @@
 </body>
 </html>
 
-
 <?php
 session_start();
 require('ConnectDatabase.php'); 
-$username = null;
-$password = null;
-if (isset($_POST['UserName']) && isset($_POST['Password'])) {
   $username = $_POST['UserName'];
   $password = $_POST['Password'];
-}
 
     $curl = curl_init();
     $Application_Key = "TUa1b9624cd2fb02b2e49c2d28929145d70f0c51f7461367c20d72dbae38ad89457340ade3c630d05c487ac733fe73d6ea";
@@ -47,7 +44,7 @@ if (isset($_POST['UserName']) && isset($_POST['Password'])) {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => "https://restapi.tu.ac.th/api/v1/auth/Ad/verify",
+      CURLOPT_URL => "http://restapi.tu.ac.th/api/v1/auth/Ad/verify",
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",
       CURLOPT_MAXREDIRS => 10,
@@ -91,20 +88,7 @@ if (isset($_POST['UserName']) && isset($_POST['Password'])) {
           $stmt1 = sqlsrv_query( $conn, $sql , $params, $options );
           $row_count1 = sqlsrv_num_rows( $stmt1 );
           
-          if ($data->{'displayname_th'} == "ทศพร ยั่งยืน"){
-            echo "
-            <script>
-            Swal.fire({
-                position: 'top-center',
-                icon: 'success',
-                title: 'เข้าสู่ระบบสำเร็จ',
-                showConfirmButton: false,
-                timer: 800, });
-                setTimeout(function(){
-                    window.location.href = 'index.php';
-                 },1500);
-            </script>";
-          }elseif ($row_count === 1){
+          if ($row_count === 1){
             echo "
             <script>
             Swal.fire({

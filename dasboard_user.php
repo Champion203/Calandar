@@ -9,11 +9,11 @@ session_start();
     <script>
     Swal.fire({
       icon: 'warning',
-      title: 'ลบการจอง',
-      text: 'คุณต้องการลบการจอง',
+      title: 'ยกเลิกการจอง',
+      text: 'คุณต้องการยกเลิกการจอง',
       showCancelButton: true,
       cancelButtonColor: '#d33',
-      confirmButtonText: 'ลบการจอง',
+      confirmButtonText: 'ยกเลิกการจอง',
     }).then((result) => {
       if (result.value) {
         location.href='dasboard_user.php?del1=$del' ;
@@ -29,7 +29,7 @@ session_start();
       Swal.fire({
           position: 'top-center',
           icon: 'error',
-          title: 'ไม่สามารถลบได้เนื่องจากเกินวันที่กำหนด',
+          title: 'ไม่สามารถยกเลิกการจองได้เนื่องจากเกินวันที่กำหนด',
           showConfirmButton: false,
           timer: 800, });
           setTimeout(function(){
@@ -49,21 +49,19 @@ session_start();
     $stmt = sqlsrv_query( $conn, $sql, $params);
       if( $stmt === false ) {
           die( print_r( sqlsrv_errors(), true));
-    }
-      else
-      {
-          echo "
-          <script>
-          Swal.fire({
-              position: 'top-center',
-              icon: 'success',
-              title: 'ลบเรียบร้อย',
-              showConfirmButton: false,
-              timer: 1500, });
-              setTimeout(function(){
-                  window.location.href = 'dasboard_user.php';
-              },1500);
-          </script>";
+      }else {
+            echo "
+            <script>
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'ยกเลิกการจอง',
+                showConfirmButton: false,
+                timer: 1500, });
+                setTimeout(function(){
+                    window.location.href = 'dasboard_user.php';
+                },1500);
+            </script>";
       }
     sqlsrv_close($conn);
   }
@@ -173,11 +171,15 @@ function OptanonWrapper() { }
                             <?php }?></td>
                             <td><center><?php 
                             $id = $result["ID_Reserve"];
+                            $status = $result['Status_Reserve'];
                             if ($datediff < '3') { 
+                              echo "<input type='button' class='btn btn-danger disabled' value='ยกเลิก'>";
+                            }elseif (($status == 'cancel')){
                               echo "<input type='button' class='btn btn-danger disabled' value='ยกเลิก'>";
                             }elseif ($datediff >= '3') { 
                               echo "<a href='dasboard_user.php?del=$id' class='btn btn-danger' role='button'>ยกเลิก</a>";
-                            }?></td></center>
+                            }
+                            ?></td></center>
                           </tr>
               <?php $number++; } ?>
           <tfoot>
