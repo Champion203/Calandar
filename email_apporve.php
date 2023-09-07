@@ -1,6 +1,6 @@
 
 <?php
-require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+include 'send_mail/phpmailer/PHPMailerAutoload.php';
 /* ------------------------------------------------------------------------------------------------------------- */
 $message1 = "ชื่อ-นามสกุล: ".$Name."\n";
 $message2= "อีเมล์: ".$email."\n";
@@ -9,7 +9,7 @@ $message4= "ห้อง: ".$Name_Room."\n";
 $message5= "สามารถติดตามสถานะได้ทาง ";
 $message6= "ตั้งแต่วันที่: ".$Start." น. "."ถึงวันที่: ".$End." น.";
 $message7= "เบอร์โทรศัพท์: ".$Phone;
-$link = 'https://devphp.sa.ict.tu.ac.th/meetingroom/';
+$link = 'https://reserve.sa.ict.tu.ac.th/index.php';
 /* ------------------------------------------------------------------------------------------------------------- */
 
 $mail = new PHPMailer(true);
@@ -19,9 +19,9 @@ $mail->Host = 'smtp.office365.com';
 $mail->Port       = 587;
 $mail->SMTPSecure = 'tls';
 $mail->SMTPAuth   = true;
-$mail->Username = 'champ894@tu.ac.th';
-$mail->Password = '1139700012961';
-$mail->SetFrom('champ894@tu.ac.th', 'FromEmail');
+$mail->Username = 'no-reply-ict@tu.ac.th';
+$mail->Password = 'N0r3ply@2o23';
+$mail->SetFrom('no-reply-ict@tu.ac.th', 'FromEmail');
 $mail->addAddress($email, 'ToEmail');
 //$mail->SMTPDebug  = 3;
 //$mail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";}; //$mail->Debugoutput = 'echo';
