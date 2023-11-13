@@ -1,15 +1,15 @@
 <?php
 session_start();
-if (isset ($_SESSION['displayname_th'])){
+if (isset($_SESSION['displayname_th'])) {
     include 'send_mail/phpmailer/PHPMailerAutoload.php';
     /* ------------------------------------------------------------------------------------------------------------- */
-    $message1 = "ชื่อ-นามสกุล: ".$_SESSION['displayname_th']."\n";
-    $message2= "อีเมล์: ".$_SESSION['email']."\n";
-    $message3.= "อาคาร: ".$Building_id."\n";
-    $message4= "ห้อง: ".$_POST["Ref_Room_id"]."\n";
-    $message5= "สามารถติดตามสถานะได้ทาง ";
-    $message6= "ตั้งแต่วันที่: ".$datestart." น. "."ถึงวันที่: ".$dateend." น.";
-    $message7= "เบอร์โทรศัพท์: ".$_POST["Phone"];
+    $message1 = "ชื่อ-นามสกุล: " . $_SESSION['displayname_th'] . "\n";
+    $message2 = "อีเมล์: " . $_SESSION['email'] . "\n";
+    $message3 .= "อาคาร: " . $Building_id . "\n";
+    $message4 = "ห้อง: " . $_POST["Ref_Room_id"] . "\n";
+    $message5 = "สามารถติดตามสถานะได้ทาง ";
+    $message6 = "ตั้งแต่วันที่: " . $datestart . " น. " . "ถึงวันที่: " . $dateend . " น.";
+    $message7 = "เบอร์โทรศัพท์: " . $_POST["Phone"];
     $link = 'https://reserve.sa.ict.tu.ac.th/index.php';
     /* ------------------------------------------------------------------------------------------------------------- */
 
@@ -17,9 +17,9 @@ if (isset ($_SESSION['displayname_th'])){
     $mail->CharSet = "utf-8";
     $mail->isSMTP();
     $mail->Host = 'smtp.office365.com';
-    $mail->Port       = 587;
+    $mail->Port = 587;
     $mail->SMTPSecure = 'tls';
-    $mail->SMTPAuth   = true;
+    $mail->SMTPAuth = true;
     $mail->Username = 'no-reply-ict@tu.ac.th';
     $mail->Password = 'N0r3ply@2o23';
     $mail->SetFrom('no-reply-ict@tu.ac.th', 'FromEmail');
@@ -40,7 +40,7 @@ if (isset ($_SESSION['displayname_th'])){
 
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-    if(!$mail->send()) {
+    if (!$mail->send()) {
         echo 'Message could not be sent.';
         echo 'Mailer Error: ' . $mail->ErrorInfo;
     }

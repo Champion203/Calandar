@@ -1,23 +1,21 @@
 <?php
-    session_start();
-    require ('Header.html'); 
-    require ('navbar.php');
-    require('ConnectDatabase.php'); 
-	$sql = "INSERT INTO Ban_User (Email, Baned)
+session_start();
+require('Header.html');
+require('navbar.php');
+require('ConnectDatabase.php');
+$sql = "INSERT INTO Ban_User (Email, Baned)
             VALUES (?, ?)";
 
-    if(isset($_POST["Email"]) AND ($_POST["Baned"])){
-        $Email = $_POST["Email"] ;
-        $Baned = $_POST["Baned"] ;
-    }
-    $params = array ($Email, $Baned);
+if (isset($_POST["Email"]) and ($_POST["Baned"])) {
+    $Email = $_POST["Email"];
+    $Baned = $_POST["Baned"];
+}
+$params = array($Email, $Baned);
 
-    $stmt = sqlsrv_query( $conn, $sql, $params);
-    if( $stmt === false ) {
-    die( print_r( sqlsrv_errors(), true));
-    }
-    else
-    {
+$stmt = sqlsrv_query($conn, $sql, $params);
+if ($stmt === false) {
+    die(print_r(sqlsrv_errors(), true));
+} else {
     echo "
     <script>
     Swal.fire({
@@ -30,6 +28,6 @@
         window.location.href = 'baned.php';
         },1500);
     </script>";
-    }
-    sqlsrv_close($conn);
-    ?>  
+}
+sqlsrv_close($conn);
+?>

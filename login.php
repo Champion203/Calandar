@@ -24,7 +24,7 @@
   <h1>ระบบจองห้องออนไลน์</h1></div>
   <input type="text" placeholder="Username" name="UserName" required>
   <input type="password" placeholder="Password" name="Password" required>
-  <button type="submit" class="btn btn-primary">Login</button> <hr>
+  <button href='javascript:location.reload()' type="submit" class="btn btn-primary">Login</button> <hr>
   <p align="center">© Office of the Information and Communication Technology at Thammasat University</p>
 </form>	
 </div>
@@ -37,6 +37,8 @@ session_start();
 require('ConnectDatabase.php'); 
   $username = $_POST['UserName'];
   $password = $_POST['Password'];
+  echo $username;
+  echo $password;
 
     $curl = curl_init();
     $Application_Key = "TUa1b9624cd2fb02b2e49c2d28929145d70f0c51f7461367c20d72dbae38ad89457340ade3c630d05c487ac733fe73d6ea";
@@ -61,15 +63,12 @@ require('ConnectDatabase.php');
     
     $response = curl_exec($curl);
     $err = curl_error($curl);
-    
     curl_close($curl);
-    
+    $data = json_decode($response);
     if ($err) {
       $txt_error = "UserName หรือ Password ของท่านไม่ถูกต้องกรุณา Login  ใหม่";
-    } else {
-      $data = json_decode($response);
-        if ($data->{'status'} == "true"){
-        // if ($data->{'status'} == "true" && $data->{'type'} == "employee"){
+    } elseif ($data->{'status'} == "true") {
+      // if ($data->{'status'} == "true" && $data->{'type'} == "employee"){
           $_SESSION['department'] = $data->{'department'};
           $_SESSION['displayname_th'] = $data->{'displayname_th'};
           $_SESSION['email'] = $data->{'email'};
@@ -118,7 +117,7 @@ require('ConnectDatabase.php');
               }
             })
             </script>";
-          } else {
+          } elseif ($row_count == 0 && $row_count1 == 0) {
             echo "
             <script>
             Swal.fire({
@@ -161,5 +160,4 @@ require('ConnectDatabase.php');
           })
           </script>";
     }
-  }
 ?>
